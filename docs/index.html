@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harbor — one home for free Mac apps</title>
+  <meta name="description" content="Harbor shows every Harbor app in one place, tells you about updates and holds their settings. Free and open source, for macOS 15 or later.">
+  <meta name="theme-color" content="#fbf3ea">
+  <link rel="canonical" href="https://kaandis.github.io/harbor/">
+  <link rel="icon" href="assets/favicon.png?v=1">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=1">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Harbor — one home for free Mac apps">
+  <meta property="og:description" content="Every Harbor app in one place: updates and settings, no downloads behind your back.">
+  <meta property="og:url" content="https://kaandis.github.io/harbor/">
+  <meta property="og:image" content="https://kaandis.github.io/harbor/assets/shots/shelf.png?v=1">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.580 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.590 1.03 2.68 0 3.840-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5Zm0-5c2 0 3.8.8 5.1 2.1a1 1 0 0 1-1.4 1.4 5.2 5.2 0 0 0-7.4 0 1 1 0 0 1-1.4-1.4A7.2 7.2 0 0 1 12 13.5Zm0-5c3.4 0 6.4 1.3 8.7 3.5a1 1 0 0 1-1.4 1.4A10.5 10.5 0 0 0 12 10.5c-2.8 0-5.4 1.1-7.3 2.9a1 1 0 0 1-1.4-1.4A12.5 12.5 0 0 1 12 8.5Z"/></symbol>
+    <symbol id="t-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></g></symbol>
+    <symbol id="t-update" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></symbol>
+    <symbol id="t-sliders" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.4" fill="#f4e8da"/><circle cx="15" cy="17" r="2.4" fill="#f4e8da"/></g></symbol>
+    <symbol id="t-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3 4.5 6v5.5c0 4.6 3.1 8.3 7.5 9.5 4.4-1.2 7.5-4.9 7.5-9.5V6L12 3Z"/></symbol>
+  </svg>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Harbor">
+        <img src="assets/icon.png?v=1" alt="" width="34" height="34">
+        <span>Harbor</span>
+        <span class="tag-free" data-i18n="nav.free">Free</span>
+      </a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#apps" data-i18n="nav.apps">Apps</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a href="https://github.com/Kaandis/harbor" class="icon-link" aria-label="GitHub"><svg><use href="#i-github"/></svg></a>
+        <button class="lang" id="lang" type="button" aria-label="Türkçeye geç">TR</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <h1><span data-i18n="hero.line1">All your Harbor apps,</span><br><span data-i18n="hero.line2">one quiet place.</span></h1>
+      <p class="lead" data-i18n="hero.lead">Harbor shows every Harbor app, tells you when one has an update, and holds their settings — so the apps themselves can stay small.</p>
+      <div class="actions">
+        <a class="btn btn-dark" href="https://github.com/Kaandis/harbor/releases/latest/download/Harbor.zip"><svg><use href="#i-download"/></svg><span data-i18n="hero.download">Download for free</span></a>
+        <a class="btn btn-soft" href="https://github.com/Kaandis/harbor"><svg><use href="#i-github"/></svg><span data-i18n="hero.github">Star on GitHub</span></a>
+      </div>
+    </section>
+
+    <section class="demo-wrap wrap" aria-label="Harbor on a Mac">
+      <div class="mac-frame" id="macFrame">
+        <div class="mac unlocked" id="mac">
+          <div class="wallpaper" aria-hidden="true"></div>
+          <div class="menubar">
+            <span class="mb-left"><b>Harbor</b><span data-i18n="mb.file">File</span><span data-i18n="mb.edit">Edit</span><span data-i18n="mb.view">View</span><span data-i18n="mb.window">Window</span></span>
+            <span class="mb-right"><svg><use href="#i-wifi"/></svg><span id="menuClock">9:41</span></span>
+          </div>
+          <button class="harbor-window" id="harborWindow" type="button" aria-label="Show the next Harbor screen">
+            <img id="shot" src="assets/shots/shelf.png?v=1" alt="Harbor showing Inlet and Ferry on its shelf" width="1400" height="980">
+          </button>
+          <nav class="dock" id="dock" aria-label="Harbor Dock"></nav>
+          <div class="dock-label" id="dockLabel" hidden></div>
+        </div>
+      </div>
+      <p class="demo-hint" data-i18n="demo.hint">Click the window to open an app’s page. The Dock below holds only Harbor apps; each icon takes you to its site.</p>
+    </section>
+
+    <section class="section wrap" id="how">
+      <h2 data-i18n="how.title">A harbour, not a store.</h2>
+      <div class="features three">
+        <div class="feature"><span class="tile"><svg><use href="#t-grid"/></svg></span><h3 data-i18n="f1.t">Every app, at a glance</h3><p data-i18n="f1.d">What’s installed, what’s current, and what you haven’t tried yet.</p></div>
+        <div class="feature"><span class="tile"><svg><use href="#t-update"/></svg></span><h3 data-i18n="f2.t">Updates, told not taken</h3><p data-i18n="f2.d">Harbor tells you when there’s a new version and opens its page. It never downloads anything by itself.</p></div>
+        <div class="feature"><span class="tile"><svg><use href="#t-sliders"/></svg></span><h3 data-i18n="f3.t">Settings in one place</h3><p data-i18n="f3.d">Each app describes its settings; Harbor draws them and the app picks up a change instantly.</p></div>
+        <div class="feature"><span class="tile"><svg><use href="#t-shield"/></svg></span><h3 data-i18n="f4.t">Quiet and private</h3><p data-i18n="f4.d">One small catalog file, fetched at most twice a day, is all Harbor reads from the internet. Nothing is sent.</p></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="apps">
+      <h2 data-i18n="apps.title">In the harbour</h2>
+      <div class="shelf">
+        <a href="https://kaandis.github.io/inlet/"><img src="assets/inlet-icon.png?v=1" alt="" width="120" height="120"><b>Inlet</b><span data-i18n="apps.inlet">Your notch, put to work.</span></a>
+        <a href="https://kaandis.github.io/ferry/"><img src="assets/ferry-icon.png?v=1" alt="" width="120" height="120"><b>Ferry</b><span data-i18n="apps.ferry">Every window, one Tab away.</span></a>
+        <div class="soon"><span class="soon-tile" aria-hidden="true">…</span><b data-i18n="apps.next">Next ship</b><span data-i18n="apps.nextD">On its way.</span></div>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="cta">
+        <img src="assets/icon.png?v=1" alt="" width="76" height="76">
+        <h2 data-i18n="cta.title">Free. Calm. Yours.</h2>
+        <p data-i18n="cta.lead">No account, no tracking, no store.</p>
+        <a class="btn btn-light" href="https://github.com/Kaandis/harbor/releases/latest/download/Harbor.zip"><svg><use href="#i-download"/></svg><span data-i18n="hero.download">Download for free</span></a>
+        <p class="cta-note" data-i18n="cta.note">macOS 15 or later. Unzip, move Harbor to Applications, and the first time right-click it and choose Open.</p>
+      </div>
+    </section>
+
+    <section class="section wrap" id="faq">
+      <h2 data-i18n="faq.title">Questions</h2>
+      <div class="faq">
+        <details><summary data-i18n="q1.q">Do I need Harbor to use Inlet or Ferry?</summary><p data-i18n="q1.a">No. Each app works on its own and keeps a small Settings window. Harbor just gathers them in one place.</p></details>
+        <details><summary data-i18n="q2.q">Does Harbor install or update apps for me?</summary><p data-i18n="q2.a">No, on purpose. Get and Update open the app’s website, where you download it like any other app. Nothing changes on your Mac behind your back.</p></details>
+        <details><summary data-i18n="q3.q">How do settings reach the apps?</summary><p data-i18n="q3.a">Each app ships a small file describing its settings. Harbor reads it, draws the controls, writes your choice into that app’s own preferences and tells the app, which applies it right away.</p></details>
+        <details><summary data-i18n="q4.q">What does Harbor send over the internet?</summary><p data-i18n="q4.a">Nothing. It reads one public file, <code>catalog.json</code> on this site, to learn the latest versions — at most twice a day, or when you press Check for Updates.</p></details>
+        <details><summary data-i18n="q5.q">macOS says it can’t be opened.</summary><p data-i18n="q5.a">Builds aren’t notarized yet. Right-click Harbor and choose Open, or run <code>xattr -dr com.apple.quarantine /Applications/Harbor.app</code>.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <div class="footer-row">
+      <span class="footer-brand"><img src="assets/icon.png?v=1" alt="" width="22" height="22">Harbor</span>
+      <span class="footer-links">
+        <a href="https://github.com/Kaandis/harbor">GitHub</a>
+        <a href="https://github.com/Kaandis/harbor/blob/main/LICENSE" data-i18n="footer.license">MIT License</a>
+        <a href="https://github.com/Kaandis/harbor-kit">HarborKit</a>
+        <a href="catalog.json" data-i18n="footer.catalog">Catalog</a>
+      </span>
+    </div>
+    <p class="disclaimer" data-i18n="footer.disclaimer">Harbor is an independent project and is not affiliated with, endorsed by or sponsored by Apple Inc. Mac and macOS are trademarks of Apple Inc., registered in the U.S. and other countries.</p>
+  </footer>
+
+  <script src="app.js?v=1"></script>
+</body>
+</html>

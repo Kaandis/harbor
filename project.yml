@@ -1,0 +1,52 @@
+name: Harbor
+options:
+  bundleIdPrefix: app.harbor
+  deploymentTarget:
+    macOS: "15.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+
+packages:
+  HarborKit:
+    url: https://github.com/Kaandis/harbor-kit
+    from: 0.1.0
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+    CODE_SIGN_IDENTITY: "-"
+    ENABLE_HARDENED_RUNTIME: NO
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+
+targets:
+  Harbor:
+    type: application
+    platform: macOS
+    sources:
+      - path: Harbor
+    dependencies:
+      - package: HarborKit
+    info:
+      path: Harbor/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Harbor
+        CFBundleDevelopmentRegion: en
+        CFBundleAllowMixedLocalizations: true
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSMinimumSystemVersion: "15.0"
+        LSApplicationCategoryType: public.app-category.utilities
+        NSHumanReadableCopyright: MIT License
+        CFBundleURLTypes:
+          - CFBundleURLName: app.harbor.link
+            CFBundleURLSchemes: [harbor]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.harbor.Harbor
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: NO

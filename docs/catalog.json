@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "apps": [
+    {
+      "id": "inlet",
+      "name": "Inlet",
+      "bundleID": "app.inlet.Inlet",
+      "tagline": {
+        "en": "Your notch, put to work.",
+        "tr": "Çentiğin artık işe yarıyor."
+      },
+      "summary": {
+        "en": "A living island around the MacBook notch: Now Playing, a file tray with AirDrop, quick timers, lock-screen widgets and calmer HUDs.",
+        "tr": "MacBook çentiğinin etrafında yaşayan bir ada: şu an çalan, AirDrop’lu dosya tepsisi, hızlı zamanlayıcılar, kilit ekranı widget’ları ve daha sakin göstergeler."
+      },
+      "site": "https://kaandis.github.io/inlet/",
+      "repository": "https://github.com/Kaandis/inlet",
+      "latestVersion": "1.3",
+      "minimumMacOS": "15.0",
+      "notes": {
+        "en": "English and Turkish, a new website, and a twin lock-screen window so drag-and-drop onto the island works again.",
+        "tr": "İngilizce ve Türkçe, yeni bir web sitesi ve kilit ekranı için ikiz pencere; adaya sürükle-bırak yeniden çalışıyor."
+      }
+    },
+    {
+      "id": "ferry",
+      "name": "Ferry",
+      "bundleID": "app.ferry.Ferry",
+      "tagline": {
+        "en": "Every window, one Tab away.",
+        "tr": "Her pencere bir Tab uzağında."
+      },
+      "summary": {
+        "en": "A window switcher: hold ⌥ and tap Tab to see every window on every Space with live pictures, search and quick actions, plus Dock previews.",
+        "tr": "Bir pencere değiştirici: ⌥’ye basılı tutup Tab’a dokun; her Space’teki her pencereyi canlı görüntülerle gör, ara, hızlı işlemler yap. Dock önizlemeleri de var."
+      },
+      "site": "https://kaandis.github.io/ferry/",
+      "repository": "https://github.com/Kaandis/ferry",
+      "latestVersion": "1.2",
+      "minimumMacOS": "15.0",
+      "notes": {
+        "en": "Works with Harbor: settings changed here apply to Ferry right away. Also: pick a highlight colour, Liquid Glass panels, no phantom windows.",
+        "tr": "Harbor ile çalışır: burada değiştirdiğin ayarlar Ferry’ye anında uygulanır. Ayrıca: vurgu rengi seçimi, Liquid Glass paneller, hayalet pencere yok."
+      }
+    }
+  ]
+}
