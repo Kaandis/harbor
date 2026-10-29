@@ -62,14 +62,14 @@
       },
       "site": "https://kaandis.github.io/harbor/",
       "repository": "https://github.com/Kaandis/harbor",
-      "latestVersion": "0.2",
+      "latestVersion": "0.3",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "One-click Install and Update, Update All, and a new icon.",
-        "tr": "Tek tıkla kurulum ve güncelleme, Tümünü Güncelle ve yeni bir simge."
+        "en": "A harbour seen from above: installs sail in, updates arrive by supply boat. Plus clean uninstalls.",
+        "tr": "Kuşbakışı bir liman: kurulumlar limana yanaşır, güncellemeler ikmal teknesiyle gelir. Bir de temiz kaldırma."
       },
-      "download": "https://github.com/Kaandis/harbor/releases/download/v0.2/Harbor.zip",
-      "sha256": "f54d1e68e1bfc1c9a512af5698cc4343fbf029a7fbc0abf6014994c10d067388"
+      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3/Harbor.zip",
+      "sha256": "73ebde16e0347e3b6beecd96c1fdcac4491583c80b05a37fa77ce2047d734e8e"
     }
   ]
 }

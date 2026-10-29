@@ -17,15 +17,17 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/shots/shelf.png" width="720" alt="Harbor rafında Inlet ve Ferry">
+  <img src="docs/assets/shots/shelf.png" width="720" alt="Harbor’ın limanı: Inlet, Ferry’nin yanındaki iskelesine yanaşıyor">
 </p>
 
 ## Ne yapar
 
-- **Her uygulama bir bakışta.** [Inlet](https://kaandis.github.io/inlet/), [Ferry](https://kaandis.github.io/ferry/) ve sıradakiler: kurulu mu, güncel mi, seni mi bekliyor.
+- **Kuşbakışı bir liman.** Her uygulama bir tekne. [Inlet](https://kaandis.github.io/inlet/), [Ferry](https://kaandis.github.io/ferry/) ve sıradakiler kuruluysa iskelelerinde bağlı durur, değilse dalgakıranın dışında demirde bekler. Birini kurduğunda indirme ilerledikçe limanın ağzından girip iskelesine yanaşır; güncelleme bir ikmal teknesiyle gelir. Altı uygulamadan sonra dalgakıran boyunca ikinci bir iskele sırası açılır. Gece (koyu modda) rıhtımda lambalar yanar.
+- **Bir şey olmadıkça hiçbir şey kıpırdamaz.** Liman bir kez çizilir ve durur; tekneler yalnızca kurulum ya da güncelleme sürerken hareket eder.
 - **Tek tıkla kurulum ve güncelleme.** **Kur** ve **Güncelle**, uygulamanın GitHub sürümünü indirir, katalogdaki SHA-256 ile doğrular, açıksa uygulamayı kapatır, yerinde değiştirir ve yeniden açar. **Tümünü Güncelle** hepsini birden yapar; Harbor kendini de aynı yolla günceller.
 - **Ayarlar tek yerde.** Her uygulama tercihlerini tarif eden bir `settings-schema.json` ile gelir. Harbor onları çizer, uygulama değişikliği anında uygular.
 - **İzinler bir bakışta.** Uygulamalar hangi izinlere sahip olduklarını bildirir, eksik olanı görürsün.
+- **Temiz kaldırma.** Bir uygulamanın sayfasından onu ve Mac’inde tuttuğu her şeyi kaldırabilirsin: ayarları, önbellekleri, kayıtlı pencereleri, kayıtları, destek dosyaları ve verdiğin izinler. Hepsi Çöp Sepeti’ne gider, fikrini değiştirirsen geri alabilirsin; teknesi de demire geri döner.
 - **Uygulamalardan bağlantı.** Harbor kuruluysa bir uygulamanın **Ayarlar…** menüsü Harbor’daki sayfasını açar (`harbor://app/ferry`).
 
 ## Neden böyle çalışıyor
@@ -45,7 +47,7 @@
 xattr -dr com.apple.quarantine /Applications/Harbor.app
 ```
 
-Harbor özel bir izin istemez. Kurduğu uygulamalar /Applications’a gider. Sürümler notarize edilene kadar güncellenen bir uygulamanın imzası değişir; macOS Erişilebilirlik gibi izinleri bir kez daha sorar.
+Harbor özel bir izin istemez. Kurduğu uygulamalar /Applications’a gider. Her sürüm aynı sertifikayla imzalanır, bu yüzden güncellemeler verdiğin izinleri korur (bundan önce imzalanmış bir sürümden güncellerken izinler son bir kez sorulur).
 
 ## Sorumluluk reddi
 

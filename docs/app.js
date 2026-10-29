@@ -20,10 +20,10 @@
     'mb.file': 'Dosya', 'mb.edit': 'Düzen', 'mb.view': 'Görüntü', 'mb.window': 'Pencere',
     'demo.hint': 'Bir uygulamanın sayfasını açmak için pencereye tıkla. Alttaki Dock’ta yalnızca Harbor uygulamaları var; her simge kendi sitesine götürür.',
     'how.title': 'Mağaza değil, bir liman.',
-    'f1.t': 'Her uygulama bir bakışta', 'f1.d': 'Hangisi kurulu, hangisi güncel, hangisini henüz denemedin.',
+    'f1.t': 'Kuşbakışı bir liman', 'f1.d': 'Kurulu uygulamalar iskelelerinde, diğerleri demirde bekler. Birini kurduğunda indirme ilerledikçe limana girer.',
     'f2.t': 'Tek tıkla güncelleme', 'f2.d': 'Güncelle’ye bas; Harbor sürümü indirir, doğrular, yerine koyar ve uygulamayı yeniden açar. Sen basmadan hiçbir şey olmaz.',
     'f3.t': 'Ayarlar tek yerde', 'f3.d': 'Her uygulama ayarlarını tarif eder; Harbor onları çizer, uygulama değişikliği anında alır.',
-    'f4.t': 'Sessiz ve gizli', 'f4.d': 'Günde en fazla iki kez çekilen küçük bir katalog ve senin kurmayı seçtiğin sürümler. Hiçbir şey gönderilmez.',
+    'f4.t': 'Temiz kaldırma', 'f4.d': 'Kaldır, bir uygulamayı ve Mac’inde tuttuğu her şeyi Çöp Sepeti’ne taşır: ayarlar, önbellekler, kayıtlar ve izinler.',
     'apps.title': 'Limandakiler',
     'apps.inlet': 'Çentiğin artık işe yarıyor.',
     'apps.ferry': 'Her pencere bir Tab uzağında.',
@@ -83,9 +83,9 @@
   }
   setInterval(tickClock, 10_000);
 
-  // The window flips between the shelf and an app's page, cross-fading.
-  const SHOTS = ['assets/shots/shelf.png?v=1', 'assets/shots/ferry.png?v=1'];
-  const ALTS = ['Harbor showing Inlet and Ferry on its shelf', 'Ferry’s page in Harbor, with its settings'];
+  // The window flips between the harbour and an app's page, cross-fading.
+  const SHOTS = ['assets/shots/shelf.png?v=2', 'assets/shots/ferry.png?v=2'];
+  const ALTS = ['Harbor’s harbour, with Inlet sailing in to its berth beside Ferry', 'Ferry’s page in Harbor, with its settings'];
   let shotIndex = 0;
   const shot = $('#shot');
   $('#harborWindow').addEventListener('click', () => {

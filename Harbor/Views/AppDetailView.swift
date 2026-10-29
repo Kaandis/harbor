@@ -39,11 +39,8 @@ struct AppDetailView: View {
                         .foregroundStyle(Theme.ink)
                         .lineSpacing(3)
                         .fixedSize(horizontal: false, vertical: true)
-                    HStack(spacing: 16) {
-                        Link(destination: app.site) { Label("Website", systemImage: "safari") }
-                        Link(destination: app.repository) { Label("Source Code", systemImage: "chevron.left.forwardslash.chevron.right") }
-                    }
-                    .font(.system(size: 13, weight: .medium))
+                    Link(destination: app.site) { Label("Website", systemImage: "safari") }
+                        .font(.system(size: 13, weight: .medium))
                     .foregroundStyle(Theme.ink2)
                     .padding(.top, 4)
                 }
@@ -62,6 +59,10 @@ struct AppDetailView: View {
 
                 if let permissions = settings?.permissions, !permissions.isEmpty {
                     Card(title: "Permissions") { PermissionsList(permissions: permissions) }
+                }
+
+                if store.installed[app.id] != nil {
+                    UninstallCard(store: store, app: app, done: back)
                 }
             }
             .padding(.horizontal, 40)
@@ -135,6 +136,74 @@ struct AppDetailView: View {
     }
 }
 
+/// The last card on an installed app's page: remove it and everything it
+/// keeps on this Mac, after one confirmation.
+private struct UninstallCard: View {
+    var store: HarborStore
+    let app: CatalogApp
+    /// Back to the harbour, to watch the boat leave.
+    let done: () -> Void
+
+    @State private var confirming = false
+    @State private var showingFiles = false
+
+    var body: some View {
+        let leftovers = Uninstaller.leftovers(of: app)
+        let phase = store.uninstaller.phase(of: app)
+        Card(title: "Uninstall") {
+            Text("Removes \(app.name) and everything it keeps on this Mac: its settings, caches and logs, and the permissions you gave it. It all goes to the Trash, so you can still change your mind.")
+                .font(.system(size: 14))
+                .foregroundStyle(Theme.ink)
+                .lineSpacing(3)
+                .fixedSize(horizontal: false, vertical: true)
+            if !leftovers.isEmpty {
+                DisclosureGroup(isExpanded: $showingFiles) {
+                    VStack(alignment: .leading, spacing: 3) {
+                        ForEach(leftovers, id: \.self) { url in
+                            Text(url.path.replacingOccurrences(of: NSHomeDirectory(), with: "~"))
+                                .font(.system(size: 11.5).monospaced())
+                                .foregroundStyle(Theme.ink2)
+                                .textSelection(.enabled)
+                        }
+                    }
+                    .padding(.top, 4)
+                } label: {
+                    Text("\(leftovers.count + 1) items, the app included")
+                        .font(.system(size: 12.5, weight: .medium))
+                        .foregroundStyle(Theme.ink2)
+                }
+            }
+            HStack(spacing: 12) {
+                Button {
+                    confirming = true
+                } label: {
+                    Text(phase == .working ? "Removing…" : "Uninstall \(app.name)…")
+                }
+                .buttonStyle(HarborButtonStyle(prominent: false))
+                .foregroundStyle(Theme.coral)
+                .disabled(phase == .working)
+                if case .failed(let message) = phase {
+                    Text(message)
+                        .font(.system(size: 12))
+                        .foregroundStyle(Theme.ink2)
+                }
+            }
+            .padding(.top, 4)
+        }
+        .confirmationDialog("Uninstall \(app.name)?", isPresented: $confirming) {
+            Button("Move to Trash", role: .destructive) {
+                Task {
+                    await store.uninstall(app)
+                    if store.installed[app.id] == nil { done() }
+                }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("\(app.name) quits, and it and its files go to the Trash. Its permissions are reset, so reinstalling it will ask for them again.")
+        }
+    }
+}
+
 /// A titled cream card.
 struct Card<Content: View>: View {
     let title: LocalizedStringKey
@@ -182,5 +251,42 @@ private struct PermissionsList: View {
         case "screenRecording": "Screen Recording"
         default: LocalizedStringKey(key)
         }
+    }
+}
+
+/// Installed, an update waiting, or not here yet.
+struct StatusChip: View {
+    let status: AppStatus
+
+    var body: some View {
+        Group {
+            switch status {
+            case .current(let version):
+                Label { Text("Installed · \(version)") } icon: { Image(systemName: "checkmark") }
+                    .foregroundStyle(Theme.ink2)
+                    .background(Capsule().fill(Theme.raised).padding(-1))
+            case .updateAvailable(_, let latest):
+                Label { Text("Update · \(latest)") } icon: { Image(systemName: "arrow.down") }
+                    .foregroundStyle(Theme.background)
+                    .background(Capsule().fill(Theme.ink).padding(-1))
+            case .notInstalled:
+                Label { Text("Not installed") } icon: { Image(systemName: "plus") }
+                    .foregroundStyle(Theme.ink2)
+                    .background(Capsule().strokeBorder(Theme.hairline, lineWidth: 1.5).padding(-1))
+            }
+        }
+        .font(.system(size: 11.5, weight: .semibold))
+        .labelStyle(ChipLabelStyle())
+    }
+}
+
+private struct ChipLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 5) {
+            configuration.icon.font(.system(size: 9, weight: .bold))
+            configuration.title
+        }
+        .padding(.horizontal, 10)
+        .frame(height: 22)
     }
 }

@@ -23,15 +23,17 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/shots/shelf.png" width="720" alt="Harbor's shelf with Inlet and Ferry">
+  <img src="docs/assets/shots/shelf.png" width="720" alt="Harbor's harbour: Inlet sailing in to its berth beside Ferry">
 </p>
 
 ## What it does
 
-- **Every app at a glance.** [Inlet](https://kaandis.github.io/inlet/) and [Ferry](https://kaandis.github.io/ferry/), and whatever comes next: installed, current, or waiting for you.
+- **A harbour, seen from above.** Every app is a boat. [Inlet](https://kaandis.github.io/inlet/), [Ferry](https://kaandis.github.io/ferry/) and whatever comes next lie moored at their berths when they’re installed, and wait at anchor outside the breakwater when they aren’t. Install one and it sails in through the harbour mouth as the download arrives; an update comes alongside on a supply boat. Past six apps a second row of berths opens along the breakwater. At night (in dark mode) the lamps come on along the quay.
+- **Nothing moves unless something happens.** The harbour is drawn once and stays still; boats only sail while an install or update is under way.
 - **One-click installs and updates.** **Install** and **Update** download the app’s release from GitHub, check it against the catalog’s SHA-256, quit the app if it’s running, swap it in place and open it again. **Update All** does every app at once, and Harbor updates itself the same way.
 - **Settings in one place.** Each app ships a `settings-schema.json` describing its preferences. Harbor draws them and the app applies a change at once.
 - **Permissions at a glance.** Apps report which permissions they have, so you can see what’s missing.
+- **Clean uninstalls.** An app’s page can remove it and everything it keeps on your Mac: settings, caches, saved windows, logs, support files and the permissions you gave it. It all goes to the Trash, so you can still change your mind, and its boat sails back out to anchor.
 - **Links from the apps.** An app’s **Settings…** menu item opens its Harbor page (`harbor://app/ferry`) when Harbor is installed.
 
 <p align="center">
@@ -55,7 +57,7 @@
 xattr -dr com.apple.quarantine /Applications/Harbor.app
 ```
 
-Harbor needs no special permissions. Apps it installs land in /Applications. Until builds are notarized, an updated app has a new signature, so macOS asks once more for permissions such as Accessibility.
+Harbor needs no special permissions. Apps it installs land in /Applications. They’re signed with the same certificate every release, so an update keeps the permissions you granted (updating from a release signed before that asks one last time).
 
 ## For app makers
 

@@ -4,7 +4,9 @@ import HarborKit
 import SwiftUI
 
 /// `Harbor --render-previews <dir> [--ferry-app <path>]` writes PNGs of the
-/// shelf and an app page and exits, for checking the UI without clicking
+/// harbour in several states and exits. ImageRenderer greys out the turned
+/// hull layers, so for the harbour itself `--demo` and a window capture are
+/// the better check., for checking the UI without clicking
 /// through it. With --ferry-app, Ferry's page shows that build's real schema.
 @MainActor
 enum PreviewRenderer {
@@ -25,34 +27,63 @@ enum PreviewRenderer {
             }
             return
         }
+        // `Harbor --uninstall-test <path/to/Test.app>` uninstalls a stand-in app
+        // with the bundle id app.harbor.UninstallTest, logs and exits.
+        if let i = args.firstIndex(of: "--uninstall-test"), i + 1 < args.count {
+            let json = """
+            {"id":"uninstall-test","name":"HarborUninstallTest","bundleID":"app.harbor.UninstallTest",
+             "tagline":{"en":""},"summary":{"en":""},"site":"https://example.com","repository":"https://example.com",
+             "latestVersion":"1.0","minimumMacOS":"15.0"}
+            """
+            guard let app = try? JSONDecoder().decode(CatalogApp.self, from: Data(json.utf8)) else { exit(2) }
+            let uninstaller = Uninstaller()
+            print("leftovers: \(Uninstaller.leftovers(of: app).map(\.path))")
+            Task {
+                await uninstaller.uninstall(app, at: URL(fileURLWithPath: args[i + 1]))
+                print("uninstall-test: \(uninstaller.phase(of: app))")
+                exit(uninstaller.phase(of: app) == .idle ? 0 : 1)
+            }
+            return
+        }
         guard let i = args.firstIndex(of: "--render-previews"), i + 1 < args.count else { return }
         let dir = URL(fileURLWithPath: args[i + 1], isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
 
-        let store = HarborStore()
-        var installed: [String: Installed] = [:]
+        var ferry: Installed?
         if let j = args.firstIndex(of: "--ferry-app"), j + 1 < args.count {
             let url = URL(fileURLWithPath: args[j + 1])
-            installed["ferry"] = Installed(url: url, version: "1.0", schema: SettingsSchema.load(fromApp: url))
+            ferry = Installed(url: url, version: "1.2.1", schema: SettingsSchema.load(fromApp: url))
         }
-        store.injectPreview(installed: installed, selection: nil)
 
-        struct Frame<Content: View>: View {
-            @Namespace var icons
-            let content: (Namespace.ID) -> Content
+        struct Frame: View {
+            let store: HarborStore
             var body: some View {
-                content(icons)
-                    .frame(width: 900, height: 1300, alignment: .top)
+                ContentView(store: store)
+                    .frame(width: 1000, height: 720)
                     .background(Theme.background)
             }
         }
-        write(Frame { ShelfView(store: store, icons: $0, open: { _ in }) }, name: "1-shelf", to: dir)
-        if let ferry = store.shelf.first(where: { $0.id == "ferry" }) {
-            write(Frame { AppDetailView(store: store, app: ferry, icons: $0, back: {}) }, name: "2-ferry", to: dir)
+        func scene(_ name: String, installed: [String: Installed], selection: String? = nil,
+                   phases: [String: Installer.Phase] = [:], dark: Bool = false) {
+            let store = HarborStore()
+            store.injectPreview(installed: installed, selection: selection)
+            phases.forEach { store.installer.setPreview($1, for: $0) }
+            NSApp.appearance = NSAppearance(named: dark ? .darkAqua : .aqua)
+            write(Frame(store: store).environment(\.colorScheme, dark ? .dark : .light), name: name, to: dir)
         }
-        if let inlet = store.shelf.first(where: { $0.id == "inlet" }) {
-            write(Frame { AppDetailView(store: store, app: inlet, icons: $0, back: {}) }, name: "3-inlet", to: dir)
+        let both = ["ferry": ferry, "inlet": ferry.map { _ in Installed(url: URL(fileURLWithPath: "/Applications/Inlet.app"), version: "1.4", schema: nil) }]
+            .compactMapValues { $0 }
+        scene("1-harbour", installed: both)
+        scene("2-anchor", installed: ferry.map { ["ferry": $0] } ?? [:])
+        scene("3-sailing", installed: ferry.map { ["ferry": $0] } ?? [:], phases: ["inlet": .downloading(0.55)])
+        if let ferry {
+            let old = Installed(url: ferry.url, version: "1.1", schema: ferry.schema)
+            scene("4-supply", installed: ["ferry": old], phases: ["ferry": .downloading(0.6)])
         }
+        scene("5-ferry-page", installed: both, selection: "ferry")
+        scene("6-office", installed: both, selection: HarborStore.officeID)
+        scene("7-night", installed: both, dark: true)
+        scene("8-night-page", installed: both, selection: "ferry", dark: true)
         exit(0)
     }
 

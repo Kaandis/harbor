@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3 — 2026-10-29
+
+- **A harbour, seen from above.** The window is now a harbour. Installed apps lie moored at their berths, and apps you don’t have yet wait at anchor beyond the breakwater. Installing sails a boat in through the mouth as the download arrives, and an update comes alongside on a supply boat. A second row of berths opens along the breakwater past six apps. At night, lamps light the quay. Nothing moves unless something is happening.
+- **Uninstall.** An app’s page can remove the app and everything it keeps on your Mac: settings, caches, saved windows, logs, support files and its permissions. It all goes to the Trash.
+- Harbor’s own page, the harbour master’s office, holds its version, updates and the check for updates.
+- App pages link to the app’s website only.
+- When an app has several copies, Harbor shows and updates the one in Applications and ignores Xcode builds and the Trash.
+
 ## 0.2 — 2026-10-29
 
 - **One-click Install and Update.** Harbor downloads the app’s release, checks it against the catalog’s SHA-256, quits the app if it’s running, replaces it in place and opens it again. **Update All** updates everything at once, and Harbor updates itself.

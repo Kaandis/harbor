@@ -11,11 +11,17 @@ struct HarborApp: App {
             ContentView(store: store)
                 .tint(Theme.ink)
                 .frame(minWidth: 820, minHeight: 560)
-                .onAppear { store.start() }
+                .onAppear {
+                    store.start()
+                    #if DEBUG
+                    DemoDriver.runIfRequested(store)
+                    #endif
+                }
                 .onOpenURL { store.handle($0) }
         }
-        .defaultSize(width: 1000, height: 700)
-        .windowToolbarStyle(.unifiedCompact(showsTitle: false))
+        .defaultSize(width: 1000, height: 720)
+        // The shore runs to the top of the window, under the traffic lights.
+        .windowStyle(.hiddenTitleBar)
 
         Settings {
             HarborSettings()

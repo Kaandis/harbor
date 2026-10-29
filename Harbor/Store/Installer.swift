@@ -28,6 +28,8 @@ final class Installer {
     }
 
     private(set) var phases: [String: Phase] = [:]
+    /// Apps whose current or last install replaced a copy already there.
+    private(set) var replacing: Set<String> = []
 
     func phase(of app: CatalogApp) -> Phase { phases[app.id] ?? .idle }
 
@@ -40,6 +42,7 @@ final class Installer {
             return
         }
         phases[app.id] = .downloading(0)
+        if existing != nil { replacing.insert(app.id) } else { replacing.remove(app.id) }
         let work = FileManager.default.temporaryDirectory
             .appendingPathComponent("Harbor-\(UUID().uuidString)", isDirectory: true)
         defer { try? FileManager.default.removeItem(at: work) }
@@ -75,6 +78,11 @@ final class Installer {
             // Tell Launch Services about the new copy so lookups see it right away.
             LSRegisterURL(target as CFURL, true)
             phases[app.id] = .done
+            // "Updated" shows for a moment, then the app is simply current.
+            Task {
+                try? await Task.sleep(for: .seconds(2.5))
+                if phases[app.id] == .done { phases[app.id] = nil }
+            }
 
             if isSelf {
                 relaunchSelf(at: target)
@@ -91,6 +99,13 @@ final class Installer {
     }
 
     func reset(_ app: CatalogApp) { phases[app.id] = nil }
+
+    #if DEBUG
+    func setPreview(_ phase: Phase, for id: String, replacing: Bool = false) {
+        phases[id] = phase
+        if replacing { self.replacing.insert(id) } else if case .downloading(0) = phase { self.replacing.remove(id) }
+    }
+    #endif
 
     // MARK: Steps
 

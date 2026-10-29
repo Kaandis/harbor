@@ -11,12 +11,42 @@
         }
       }
     },
+    "%@ didn’t quit. Quit it and try again.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kapanmadı. Kapatıp yeniden dene."
+          }
+        }
+      }
+    },
     "%@ doesn’t share its settings with Harbor yet. Use Settings in its menu.": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ ayarlarını henüz Harbor ile paylaşmıyor. Uygulamanın menüsündeki Ayarlar’ı kullan."
+          }
+        }
+      }
+    },
+    "%@ is out": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ çıktı"
+          }
+        }
+      }
+    },
+    "%@ quits, and it and its files go to the Trash. Its permissions are reset, so reinstalling it will ask for them again.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kapanır; kendisi ve dosyaları Çöp Sepeti’ne gider. İzinleri sıfırlanır, yeniden kurarsan izinleri yine ister."
           }
         }
       }
@@ -31,12 +61,52 @@
         }
       }
     },
+    "%lld at anchor, ready to install": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld demirde, kurulmaya hazır"
+          }
+        }
+      }
+    },
+    "%lld items, the app included": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamayla birlikte %lld öge"
+          }
+        }
+      }
+    },
+    "%lld of %lld apps in port": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld uygulama limanda"
+          }
+        }
+      }
+    },
     "%lld percent": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "yüzde %lld"
+          }
+        }
+      }
+    },
+    "%lld with an update": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld güncelleme bekliyor"
           }
         }
       }
@@ -91,12 +161,32 @@
         }
       }
     },
-    "Apps": {
+    "At anchor": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uygulamalar"
+            "value": "Demirde"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vazgeç"
+          }
+        }
+      }
+    },
+    "Casting off…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Halatlar çözülüyor…"
           }
         }
       }
@@ -181,22 +271,32 @@
         }
       }
     },
-    "Harbor %@ is available": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Harbor %@ çıktı"
-          }
-        }
-      }
-    },
     "Harbor can’t write to the app’s folder. Update it from its website instead.": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Harbor uygulamanın klasörüne yazamıyor. Bunun yerine sitesinden güncelle."
+          }
+        }
+      }
+    },
+    "Harbor couldn’t move %@ to the Trash. Drag it there from Applications instead.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harbor, %@ uygulamasını Çöp Sepeti’ne taşıyamadı. Onu Uygulamalar’dan Çöp Sepeti’ne sürükle."
+          }
+        }
+      }
+    },
+    "Harbor reads a small public catalog at most twice a day, or when you check, and downloads an app only when you install or update it. Every download is checked against the catalog’s SHA-256 before it’s put in place.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harbor küçük, herkese açık bir kataloğu günde en fazla iki kez ya da sen denetlediğinde okur; bir uygulamayı yalnızca kurduğunda veya güncellediğinde indirir. Her indirme, yerine konmadan önce katalogdaki SHA-256 ile karşılaştırılır."
           }
         }
       }
@@ -217,6 +317,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ayarlarını buradan değiştirmek için önce %@ uygulamasını kur."
+          }
+        }
+      }
+    },
+    "Installed": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuruldu"
           }
         }
       }
@@ -251,6 +361,26 @@
         }
       }
     },
+    "Move to Trash": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çöp Sepeti’ne Taşı"
+          }
+        }
+      }
+    },
+    "Next ship": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sıradaki gemi"
+          }
+        }
+      }
+    },
     "Not allowed": {
       "localizations": {
         "tr": {
@@ -267,6 +397,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kurulu değil"
+          }
+        }
+      }
+    },
+    "On its way": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yolda"
           }
         }
       }
@@ -307,6 +447,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kaldır"
+          }
+        }
+      }
+    },
+    "Removes %@ and everything it keeps on this Mac: its settings, caches and logs, and the permissions you gave it. It all goes to the Trash, so you can still change your mind.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ uygulamasını ve bu Mac’te tuttuğu her şeyi kaldırır: ayarlarını, önbelleklerini, kayıtlarını ve verdiğin izinleri. Hepsi Çöp Sepeti’ne gider; fikrini değiştirirsen geri alabilirsin."
+          }
+        }
+      }
+    },
+    "Removing…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaldırılıyor…"
           }
         }
       }
@@ -361,16 +521,6 @@
         }
       }
     },
-    "Source Code": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kaynak Kodu"
-          }
-        }
-      }
-    },
     "The app didn’t quit. Quit it and try again.": {
       "localizations": {
         "tr": {
@@ -421,12 +571,72 @@
         }
       }
     },
+    "The harbour master’s office: where the Harbor apps are kept up to date.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liman ofisi: Harbor uygulamaları burada güncel tutulur."
+          }
+        }
+      }
+    },
     "This app can’t be installed from Harbor yet.": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Bu uygulama henüz Harbor’dan kurulamıyor."
+          }
+        }
+      }
+    },
+    "Try Again": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeniden Dene"
+          }
+        }
+      }
+    },
+    "Uninstall": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaldır"
+          }
+        }
+      }
+    },
+    "Uninstall %@?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kaldırılsın mı?"
+          }
+        }
+      }
+    },
+    "Uninstall %@…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Uygulamasını Kaldır…"
+          }
+        }
+      }
+    },
+    "Update": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güncelle"
           }
         }
       }
@@ -447,16 +657,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Güncelle ve Yeniden Başlat"
-          }
-        }
-      }
-    },
-    "Update available": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Güncelleme var"
           }
         }
       }
@@ -491,12 +691,42 @@
         }
       }
     },
+    "Update ↗": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güncelle ↗"
+          }
+        }
+      }
+    },
     "Updated": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Güncellendi"
+          }
+        }
+      }
+    },
+    "Updates": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güncellemeler"
+          }
+        }
+      }
+    },
+    "Version %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sürüm %@"
           }
         }
       }

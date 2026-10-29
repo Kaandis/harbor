@@ -24,10 +24,6 @@ struct InstallButton: View {
                     .font(.system(size: compact ? 12 : 13, weight: .semibold))
                     .foregroundStyle(Theme.ink)
                     .frame(height: compact ? 26 : 30)
-                    .task {
-                        try? await Task.sleep(for: .seconds(2))
-                        store.installer.reset(app)
-                    }
             case .idle, .failed:
                 Button { store.primaryAction(for: app) } label: { Text(title) }
                     .buttonStyle(HarborButtonStyle())

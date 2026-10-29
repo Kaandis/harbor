@@ -8,11 +8,14 @@ import Observation
 final class HarborStore {
     private(set) var apps: [CatalogApp]
     let installer = Installer()
+    let uninstaller = Uninstaller()
     private(set) var installed: [String: Installed] = [:]
     private(set) var isChecking = false
     private(set) var lastChecked: Date?
-    /// nil shows the shelf of all apps.
+    /// nil shows the whole harbour; an app's id or `officeID` opens its page.
     var selection: String?
+    /// The selection for Harbor's own page, the harbour master's office.
+    static let officeID = "harbor"
 
     @ObservationIgnored private var tokens: [NSObjectProtocol] = []
     private static let lastCheckedKey = "lastCatalogCheck"
@@ -68,9 +71,12 @@ final class HarborStore {
     }
 
     func scanInstalled() {
+        #if DEBUG
+        guard !demoFrozen else { return }
+        #endif
         var found: [String: Installed] = [:]
         for app in shelf {
-            guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: app.bundleID) else { continue }
+            guard let url = Self.installedCopy(of: app.bundleID) else { continue }
             let version = Self.version(at: url)
             let previous = installed[app.id]
             let schema = previous?.url == url && previous?.version == version ? previous?.schema : SettingsSchema.load(fromApp: url)
@@ -79,6 +85,17 @@ final class HarborStore {
         if found.mapValues(\.version) != installed.mapValues(\.version) || Set(found.keys) != Set(installed.keys) {
             installed = found
         }
+    }
+
+    /// The copy of an app that Harbor shows and updates. Launch Services may
+    /// name any copy it knows about, an Xcode build included, so a copy in an
+    /// Applications folder wins, and build products and the Trash never count.
+    static func installedCopy(of bundleID: String) -> URL? {
+        let copies = NSWorkspace.shared.urlsForApplications(withBundleIdentifier: bundleID).filter { url in
+            !["/Build/Products/", "/DerivedData/", "/.Trash/"].contains { url.path.contains($0) }
+        }
+        let folders = FileManager.default.urls(for: .applicationDirectory, in: [.localDomainMask, .userDomainMask])
+        return copies.first { url in folders.contains { url.path.hasPrefix($0.path + "/") } } ?? copies.first
     }
 
     /// Reads the version from disk every time. `Bundle(url:)` caches its Info.plist
@@ -122,6 +139,14 @@ final class HarborStore {
         scanInstalled()
     }
 
+    /// Removes the app and what it left behind; its boat then sails back out
+    /// to anchor.
+    func uninstall(_ app: CatalogApp) async {
+        guard let url = installed[app.id]?.url else { return }
+        await uninstaller.uninstall(app, at: url)
+        scanInstalled()
+    }
+
     /// Updates every app that has an update, one after another.
     func updateAll() async {
         for app in shelf where status(of: app).isUpdate && app.canInstall {
@@ -159,6 +184,35 @@ final class HarborStore {
     }
 
     #if DEBUG
+    @ObservationIgnored private var demoFrozen = false
+
+    /// Adds stand-in apps to see how the harbour lays out a bigger fleet,
+    /// for `--fleet <n>`; every other one shows as installed.
+    func addFleetForDemo(_ count: Int) {
+        let names = ["Tide", "Keel", "Buoy", "Quay", "Mast", "Helm", "Cove", "Reef", "Gull"]
+        var installed = self.installed
+        for i in 0..<min(count, names.count) {
+            let json = """
+            {"id":"fleet-\(i)","name":"\(names[i])","bundleID":"app.harbor.fleet\(i)",
+             "tagline":{"en":"A stand-in app."},"summary":{"en":"A stand-in app."},
+             "site":"https://example.com","repository":"https://example.com",
+             "latestVersion":"1.0","minimumMacOS":"15.0"}
+            """
+            guard let app = try? JSONDecoder().decode(CatalogApp.self, from: Data(json.utf8)) else { continue }
+            apps.append(app)
+            if i % 2 == 0, let any = self.installed.values.first {
+                installed[app.id] = Installed(url: any.url, version: "1.0", schema: nil)
+            }
+        }
+        freezeForDemo(installed: installed)
+    }
+
+    /// Shows `installed` and stops re-reading the disk, for `--demo`.
+    func freezeForDemo(installed: [String: Installed]) {
+        demoFrozen = true
+        self.installed = installed
+    }
+
     func injectPreview(installed: [String: Installed], selection: String?) {
         self.installed = installed
         self.selection = selection
