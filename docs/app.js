@@ -21,9 +21,9 @@
     'demo.hint': 'Bir uygulamanın sayfasını açmak için pencereye tıkla. Alttaki Dock’ta yalnızca Harbor uygulamaları var; her simge kendi sitesine götürür.',
     'how.title': 'Mağaza değil, bir liman.',
     'f1.t': 'Her uygulama bir bakışta', 'f1.d': 'Hangisi kurulu, hangisi güncel, hangisini henüz denemedin.',
-    'f2.t': 'Güncelleme söylenir, alınmaz', 'f2.d': 'Harbor yeni sürüm olduğunda söyler ve sayfasını açar. Kendi başına hiçbir şey indirmez.',
+    'f2.t': 'Tek tıkla güncelleme', 'f2.d': 'Güncelle’ye bas; Harbor sürümü indirir, doğrular, yerine koyar ve uygulamayı yeniden açar. Sen basmadan hiçbir şey olmaz.',
     'f3.t': 'Ayarlar tek yerde', 'f3.d': 'Her uygulama ayarlarını tarif eder; Harbor onları çizer, uygulama değişikliği anında alır.',
-    'f4.t': 'Sessiz ve gizli', 'f4.d': 'Harbor’ın internetten okuduğu tek şey, günde en fazla iki kez çekilen küçük bir katalog dosyası. Hiçbir şey gönderilmez.',
+    'f4.t': 'Sessiz ve gizli', 'f4.d': 'Günde en fazla iki kez çekilen küçük bir katalog ve senin kurmayı seçtiğin sürümler. Hiçbir şey gönderilmez.',
     'apps.title': 'Limandakiler',
     'apps.inlet': 'Çentiğin artık işe yarıyor.',
     'apps.ferry': 'Her pencere bir Tab uzağında.',
@@ -34,9 +34,9 @@
     'cta.note': 'macOS 15 veya üstü. Zip’i aç, Harbor’ı Uygulamalar’a taşı; ilk seferde sağ tıklayıp Aç’ı seç.',
     'faq.title': 'Sorular',
     'q1.q': 'Inlet ya da Ferry için Harbor gerekli mi?', 'q1.a': 'Hayır. Her uygulama tek başına çalışır ve küçük bir Ayarlar penceresi tutar. Harbor onları yalnızca tek yerde toplar.',
-    'q2.q': 'Harbor uygulamaları benim için kurar ya da günceller mi?', 'q2.a': 'Hayır, bilerek. İndir ve Güncelle uygulamanın sitesini açar; oradan her uygulama gibi indirirsin. Mac’inde arkandan hiçbir şey değişmez.',
+    'q2.q': 'Güncellemeler nasıl çalışıyor?', 'q2.a': 'Güncelle’ye (ya da Tümünü Güncelle’ye) bas. Harbor uygulamanın sürümünü GitHub’dan indirir, SHA-256’sını katalogla karşılaştırır, açıksa uygulamayı kapatır, yerinde değiştirir ve yeniden açar. Sen düğmeye basmadan hiçbir şey kurulmaz.',
     'q3.q': 'Ayarlar uygulamalara nasıl ulaşıyor?', 'q3.a': 'Her uygulama ayarlarını tarif eden küçük bir dosyayla gelir. Harbor onu okur, kontrolleri çizer, seçimini o uygulamanın kendi tercihlerine yazar ve uygulamaya haber verir; uygulama da hemen uygular.',
-    'q4.q': 'Harbor internete ne gönderiyor?', 'q4.a': 'Hiçbir şey. Son sürümleri öğrenmek için bu sitedeki herkese açık tek bir dosyayı, <code>catalog.json</code>’u okur; günde en fazla iki kez ya da Güncellemeleri Denetle’ye bastığında.',
+    'q4.q': 'Harbor internete ne gönderiyor?', 'q4.a': 'Hiçbir şey. Son sürümleri öğrenmek için bu sitedeki herkese açık tek bir dosyayı, <code>catalog.json</code>’u okur (günde en fazla iki kez ya da Güncellemeleri Denetle’ye bastığında) ve bir sürümü yalnızca kurduğunda ya da güncellediğinde indirir.',
     'q5.q': 'macOS açılamıyor diyor.', 'q5.a': 'Sürümler henüz notarize edilmedi. Harbor’a sağ tıklayıp Aç’ı seç ya da şunu çalıştır: <code>xattr -dr com.apple.quarantine /Applications/Harbor.app</code>',
     'footer.license': 'MIT Lisansı',
     'footer.catalog': 'Katalog',
@@ -104,7 +104,7 @@
   const HARBOR = [
     { name: 'Inlet', url: 'https://kaandis.github.io/inlet/', icon: 'assets/inlet-icon.png?v=1' },
     { name: 'Ferry', url: 'https://kaandis.github.io/ferry/', icon: 'assets/ferry-icon.png?v=1' },
-    { name: 'Harbor', url: 'https://kaandis.github.io/harbor/', icon: 'assets/icon.png?v=1', running: true, self: true },
+    { name: 'Harbor', url: 'https://kaandis.github.io/harbor/', icon: 'assets/icon.png?v=3', running: true, self: true },
   ];
   const dock = $('#dock');
   const label = $('#dockLabel');

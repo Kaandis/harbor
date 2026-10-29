@@ -15,7 +15,7 @@ struct ContentView: View {
         } detail: {
             ZStack {
                 Theme.background.ignoresSafeArea()
-                if let id = store.selection, let app = store.apps.first(where: { $0.id == id }) {
+                if let id = store.selection, let app = store.shelf.first(where: { $0.id == id }) {
                     AppDetailView(store: store, app: app, icons: icons, back: { select(nil) })
                         .id(app.id)
                         .transition(.opacity)
@@ -41,7 +41,7 @@ private struct Sidebar: View {
             Label("All Apps", systemImage: "square.grid.2x2")
                 .tag("all")
             Section("Apps") {
-                ForEach(store.apps) { app in
+                ForEach(store.shelf) { app in
                     HStack(spacing: 8) {
                         Image(nsImage: store.icon(for: app))
                             .resizable()
@@ -66,6 +66,18 @@ private struct UpdateFooter: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
+            if let harbor = store.harborUpdate {
+                HarborUpdateRow(store: store, harbor: harbor)
+                    .padding(.bottom, 8)
+            }
+            if store.updateCount > 1 {
+                Button {
+                    Task { await store.updateAll() }
+                } label: {
+                    Label("Update All (\(store.updateCount))", systemImage: "arrow.down.circle")
+                }
+                .buttonStyle(.borderless)
+            }
             Button {
                 Task { await store.checkForUpdates() }
             } label: {
@@ -81,6 +93,25 @@ private struct UpdateFooter: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(14)
+    }
+}
+
+/// "Harbor 0.3 is available", with a button that updates Harbor itself.
+private struct HarborUpdateRow: View {
+    var store: HarborStore
+    let harbor: CatalogApp
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("Harbor \(harbor.latestVersion) is available")
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(Theme.ink)
+            InstallButton(store: store, app: harbor, compact: true)
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(Theme.card))
+        .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).strokeBorder(Theme.hairline))
     }
 }
 

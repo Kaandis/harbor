@@ -22,7 +22,7 @@ struct ShelfView: View {
                     .padding(.top, 4)
 
                 LazyVGrid(columns: columns, alignment: .leading, spacing: 18) {
-                    ForEach(store.apps) { app in
+                    ForEach(store.shelf) { app in
                         AppTile(app: app, icon: store.icon(for: app), status: store.status(of: app), icons: icons) {
                             open(app)
                         }

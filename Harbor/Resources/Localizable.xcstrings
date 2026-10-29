@@ -31,6 +31,16 @@
         }
       }
     },
+    "%lld percent": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "yüzde %lld"
+          }
+        }
+      }
+    },
     "About": {
       "localizations": {
         "tr": {
@@ -131,6 +141,16 @@
         }
       }
     },
+    "Downloading %lld%%": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndiriliyor %%%lld"
+          }
+        }
+      }
+    },
     "Free Mac apps that share one look and one place for their settings.": {
       "localizations": {
         "tr": {
@@ -161,6 +181,36 @@
         }
       }
     },
+    "Harbor %@ is available": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harbor %@ çıktı"
+          }
+        }
+      }
+    },
+    "Harbor can’t write to the app’s folder. Update it from its website instead.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harbor uygulamanın klasörüne yazamıyor. Bunun yerine sitesinden güncelle."
+          }
+        }
+      }
+    },
+    "Install": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kur"
+          }
+        }
+      }
+    },
     "Install %@ to change its settings here.": {
       "localizations": {
         "tr": {
@@ -177,6 +227,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kurulu · %@"
+          }
+        }
+      }
+    },
+    "Installing…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuruluyor…"
           }
         }
       }
@@ -217,6 +277,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aç"
+          }
+        }
+      }
+    },
+    "Open the Website": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Web Sitesini Aç"
           }
         }
       }
@@ -301,12 +371,102 @@
         }
       }
     },
+    "The app didn’t quit. Quit it and try again.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulama kapanmadı. Kapatıp tekrar dene."
+          }
+        }
+      }
+    },
+    "The download contained a different app, so it wasn’t installed.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndirilen dosyada başka bir uygulama vardı, bu yüzden kurulmadı."
+          }
+        }
+      }
+    },
+    "The download couldn’t be unpacked.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndirilen dosya açılamadı."
+          }
+        }
+      }
+    },
+    "The download didn’t finish. Check your connection and try again.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndirme tamamlanmadı. Bağlantını kontrol edip tekrar dene."
+          }
+        }
+      }
+    },
+    "The download doesn’t match the catalog, so it wasn’t installed.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndirilen dosya katalogla eşleşmiyor, bu yüzden kurulmadı."
+          }
+        }
+      }
+    },
+    "This app can’t be installed from Harbor yet.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu uygulama henüz Harbor’dan kurulamıyor."
+          }
+        }
+      }
+    },
+    "Update All (%lld)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tümünü Güncelle (%lld)"
+          }
+        }
+      }
+    },
+    "Update and Restart": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güncelle ve Yeniden Başlat"
+          }
+        }
+      }
+    },
     "Update available": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Güncelleme var"
+          }
+        }
+      }
+    },
+    "Update to %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Sürümüne Güncelle"
           }
         }
       }
@@ -327,6 +487,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Güncelleme · %@"
+          }
+        }
+      }
+    },
+    "Updated": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güncellendi"
           }
         }
       }

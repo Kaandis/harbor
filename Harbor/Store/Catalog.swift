@@ -53,6 +53,15 @@ struct CatalogApp: Decodable, Identifiable, Hashable {
     let latestVersion: String
     let minimumMacOS: String
     let notes: SettingsSchema.Text?
+    /// The release zip Harbor installs from, and its SHA-256, so a download
+    /// that doesn't match the catalog is never installed.
+    let download: URL?
+    let sha256: String?
+    /// Harbor's own entry: used for updating Harbor, not shown on the shelf.
+    let hub: Bool?
+
+    var isHub: Bool { hub == true }
+    var canInstall: Bool { download != nil && sha256 != nil }
 
     static func == (a: CatalogApp, b: CatalogApp) -> Bool { a.id == b.id && a.latestVersion == b.latestVersion }
     func hash(into hasher: inout Hasher) { hasher.combine(id) }

@@ -7,6 +7,7 @@ import Observation
 @Observable
 final class HarborStore {
     private(set) var apps: [CatalogApp]
+    let installer = Installer()
     private(set) var installed: [String: Installed] = [:]
     private(set) var isChecking = false
     private(set) var lastChecked: Date?
@@ -18,7 +19,9 @@ final class HarborStore {
     private static let checkInterval: TimeInterval = 12 * 60 * 60
 
     init() {
-        apps = (Catalog.cached ?? Catalog.bundled).apps
+        // The copy fetched last time, unless this build of Harbor ships a newer one.
+        let bundled = Catalog.bundled
+        apps = (Catalog.cached.flatMap { $0.version >= bundled.version ? $0 : nil } ?? bundled).apps
         lastChecked = UserDefaults.standard.object(forKey: Self.lastCheckedKey) as? Date
         scanInstalled()
     }
@@ -46,19 +49,29 @@ final class HarborStore {
     func checkForUpdates() async {
         guard !isChecking else { return }
         isChecking = true
-        if let catalog = await Catalog.fetch() { apps = catalog.apps }
+        if let catalog = await Catalog.fetch(), catalog.version >= Catalog.bundled.version { apps = catalog.apps }
         lastChecked = Date()
         UserDefaults.standard.set(lastChecked, forKey: Self.lastCheckedKey)
         isChecking = false
         scanInstalled()
     }
 
+    /// The apps on the shelf; Harbor's own entry only drives its self-update.
+    var shelf: [CatalogApp] { apps.filter { !$0.isHub } }
+
+    /// Harbor's catalog entry, when a newer Harbor than this one is out.
+    var harborUpdate: CatalogApp? {
+        guard let entry = apps.first(where: \.isHub),
+              let mine = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+              Version.isNewer(entry.latestVersion, than: mine) else { return nil }
+        return entry
+    }
+
     func scanInstalled() {
         var found: [String: Installed] = [:]
-        for app in apps {
-            guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: app.bundleID),
-                  let bundle = Bundle(url: url) else { continue }
-            let version = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0"
+        for app in shelf {
+            guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: app.bundleID) else { continue }
+            let version = Self.version(at: url)
             let previous = installed[app.id]
             let schema = previous?.url == url && previous?.version == version ? previous?.schema : SettingsSchema.load(fromApp: url)
             found[app.id] = Installed(url: url, version: version, schema: schema)
@@ -66,6 +79,13 @@ final class HarborStore {
         if found.mapValues(\.version) != installed.mapValues(\.version) || Set(found.keys) != Set(installed.keys) {
             installed = found
         }
+    }
+
+    /// Reads the version from disk every time. `Bundle(url:)` caches its Info.plist
+    /// per path, so after an app is replaced in place it would still report the old one.
+    static func version(at url: URL) -> String {
+        let plist = url.appendingPathComponent("Contents/Info.plist")
+        return NSDictionary(contentsOf: plist)?["CFBundleShortVersionString"] as? String ?? "0"
     }
 
     func status(of app: CatalogApp) -> AppStatus {
@@ -76,7 +96,7 @@ final class HarborStore {
         return .current(local.version)
     }
 
-    var updateCount: Int { apps.filter { status(of: $0).isUpdate }.count }
+    var updateCount: Int { shelf.filter { status(of: $0).isUpdate }.count }
 
     func icon(for app: CatalogApp) -> NSImage {
         if let url = installed[app.id]?.url { return NSWorkspace.shared.icon(forFile: url.path) }
@@ -85,11 +105,27 @@ final class HarborStore {
 
     // MARK: Actions
 
-    /// Get and Update open the app's website; Harbor never downloads anything itself.
+    /// Install and Update download the release, check it against the catalog
+    /// and put it in place. Apps without a checksummed download open their site.
     func primaryAction(for app: CatalogApp) {
         switch status(of: app) {
-        case .notInstalled, .updateAvailable: NSWorkspace.shared.open(app.site)
-        case .current: open(app)
+        case .notInstalled, .updateAvailable:
+            guard app.canInstall else { NSWorkspace.shared.open(app.site); return }
+            Task { await install(app) }
+        case .current:
+            open(app)
+        }
+    }
+
+    func install(_ app: CatalogApp) async {
+        await installer.install(app, replacing: app.isHub ? Bundle.main.bundleURL : installed[app.id]?.url)
+        scanInstalled()
+    }
+
+    /// Updates every app that has an update, one after another.
+    func updateAll() async {
+        for app in shelf where status(of: app).isUpdate && app.canInstall {
+            await install(app)
         }
     }
 
@@ -119,7 +155,7 @@ final class HarborStore {
     func handle(_ url: URL) {
         guard url.scheme == "harbor", url.host == "app" else { return }
         let id = url.pathComponents.dropFirst().first
-        if let id, apps.contains(where: { $0.id == id }) { selection = id }
+        if let id, shelf.contains(where: { $0.id == id }) { selection = id }
     }
 
     #if DEBUG

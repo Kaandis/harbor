@@ -10,6 +10,21 @@ import SwiftUI
 enum PreviewRenderer {
     static func runIfRequested() {
         let args = CommandLine.arguments
+        // `Harbor --install-test <app id> <path/to/App.app>` installs that app
+        // from the catalog over the given copy, logs the result and exits.
+        if let i = args.firstIndex(of: "--install-test"), i + 2 < args.count {
+            let store = HarborStore()
+            let target = URL(fileURLWithPath: args[i + 2])
+            guard let app = store.apps.first(where: { $0.id == args[i + 1] }) else { exit(2) }
+            Task {
+                await store.installer.install(app, replacing: target)
+                let phase = store.installer.phase(of: app)
+                let version = HarborStore.version(at: target)
+                print("install-test \(app.id): \(phase) → version \(version)")
+                exit(phase == .done ? 0 : 1)
+            }
+            return
+        }
         guard let i = args.firstIndex(of: "--render-previews"), i + 1 < args.count else { return }
         let dir = URL(fileURLWithPath: args[i + 1], isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
@@ -32,10 +47,10 @@ enum PreviewRenderer {
             }
         }
         write(Frame { ShelfView(store: store, icons: $0, open: { _ in }) }, name: "1-shelf", to: dir)
-        if let ferry = store.apps.first(where: { $0.id == "ferry" }) {
+        if let ferry = store.shelf.first(where: { $0.id == "ferry" }) {
             write(Frame { AppDetailView(store: store, app: ferry, icons: $0, back: {}) }, name: "2-ferry", to: dir)
         }
-        if let inlet = store.apps.first(where: { $0.id == "inlet" }) {
+        if let inlet = store.shelf.first(where: { $0.id == "inlet" }) {
             write(Frame { AppDetailView(store: store, app: inlet, icons: $0, back: {}) }, name: "3-inlet", to: dir)
         }
         exit(0)

@@ -93,16 +93,7 @@ struct AppDetailView: View {
                     .padding(.top, 4)
             }
             Spacer(minLength: 12)
-            Button { store.primaryAction(for: app) } label: { Text(primaryTitle) }
-                .buttonStyle(HarborButtonStyle())
-        }
-    }
-
-    private var primaryTitle: LocalizedStringKey {
-        switch store.status(of: app) {
-        case .notInstalled: "Get on the Website ↗"
-        case .updateAvailable(_, let latest): "Update to \(latest) ↗"
-        case .current: "Open"
+            InstallButton(store: store, app: app)
         }
     }
 

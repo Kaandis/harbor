@@ -7,8 +7,8 @@
   <meta name="description" content="Harbor shows every Harbor app in one place, tells you about updates and holds their settings. Free and open source, for macOS 15 or later.">
   <meta name="theme-color" content="#fbf3ea">
   <link rel="canonical" href="https://kaandis.github.io/harbor/">
-  <link rel="icon" href="assets/favicon.png?v=1">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=1">
+  <link rel="icon" href="assets/favicon.png?v=3">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=3">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Harbor — one home for free Mac apps">
   <meta property="og:description" content="Every Harbor app in one place: updates and settings, no downloads behind your back.">
@@ -31,7 +31,7 @@
   <header class="nav" id="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top" aria-label="Harbor">
-        <img src="assets/icon.png?v=1" alt="" width="34" height="34">
+        <img src="assets/icon.png?v=3" alt="" width="34" height="34">
         <span>Harbor</span>
         <span class="tag-free" data-i18n="nav.free">Free</span>
       </a>
@@ -76,9 +76,9 @@
       <h2 data-i18n="how.title">A harbour, not a store.</h2>
       <div class="features three">
         <div class="feature"><span class="tile"><svg><use href="#t-grid"/></svg></span><h3 data-i18n="f1.t">Every app, at a glance</h3><p data-i18n="f1.d">What’s installed, what’s current, and what you haven’t tried yet.</p></div>
-        <div class="feature"><span class="tile"><svg><use href="#t-update"/></svg></span><h3 data-i18n="f2.t">Updates, told not taken</h3><p data-i18n="f2.d">Harbor tells you when there’s a new version and opens its page. It never downloads anything by itself.</p></div>
+        <div class="feature"><span class="tile"><svg><use href="#t-update"/></svg></span><h3 data-i18n="f2.t">Updates in one click</h3><p data-i18n="f2.d">Press Update and Harbor fetches the release, checks it, swaps it in and reopens the app. Nothing happens until you press.</p></div>
         <div class="feature"><span class="tile"><svg><use href="#t-sliders"/></svg></span><h3 data-i18n="f3.t">Settings in one place</h3><p data-i18n="f3.d">Each app describes its settings; Harbor draws them and the app picks up a change instantly.</p></div>
-        <div class="feature"><span class="tile"><svg><use href="#t-shield"/></svg></span><h3 data-i18n="f4.t">Quiet and private</h3><p data-i18n="f4.d">One small catalog file, fetched at most twice a day, is all Harbor reads from the internet. Nothing is sent.</p></div>
+        <div class="feature"><span class="tile"><svg><use href="#t-shield"/></svg></span><h3 data-i18n="f4.t">Quiet and private</h3><p data-i18n="f4.d">A small catalog, fetched at most twice a day, and the releases you choose to install. Nothing is sent.</p></div>
       </div>
     </section>
 
@@ -93,7 +93,7 @@
 
     <section class="section wrap">
       <div class="cta">
-        <img src="assets/icon.png?v=1" alt="" width="76" height="76">
+        <img src="assets/icon.png?v=3" alt="" width="76" height="76">
         <h2 data-i18n="cta.title">Free. Calm. Yours.</h2>
         <p data-i18n="cta.lead">No account, no tracking, no store.</p>
         <a class="btn btn-light" href="https://github.com/Kaandis/harbor/releases/latest/download/Harbor.zip"><svg><use href="#i-download"/></svg><span data-i18n="hero.download">Download for free</span></a>
@@ -105,9 +105,9 @@
       <h2 data-i18n="faq.title">Questions</h2>
       <div class="faq">
         <details><summary data-i18n="q1.q">Do I need Harbor to use Inlet or Ferry?</summary><p data-i18n="q1.a">No. Each app works on its own and keeps a small Settings window. Harbor just gathers them in one place.</p></details>
-        <details><summary data-i18n="q2.q">Does Harbor install or update apps for me?</summary><p data-i18n="q2.a">No, on purpose. Get and Update open the app’s website, where you download it like any other app. Nothing changes on your Mac behind your back.</p></details>
+        <details><summary data-i18n="q2.q">How do updates work?</summary><p data-i18n="q2.a">Press Update (or Update All). Harbor downloads the app’s release from GitHub, checks its SHA-256 against the catalog, quits the app if it’s running, replaces it in place and opens it again. Nothing is installed until you press the button.</p></details>
         <details><summary data-i18n="q3.q">How do settings reach the apps?</summary><p data-i18n="q3.a">Each app ships a small file describing its settings. Harbor reads it, draws the controls, writes your choice into that app’s own preferences and tells the app, which applies it right away.</p></details>
-        <details><summary data-i18n="q4.q">What does Harbor send over the internet?</summary><p data-i18n="q4.a">Nothing. It reads one public file, <code>catalog.json</code> on this site, to learn the latest versions — at most twice a day, or when you press Check for Updates.</p></details>
+        <details><summary data-i18n="q4.q">What does Harbor send over the internet?</summary><p data-i18n="q4.a">Nothing. It reads one public file, <code>catalog.json</code> on this site, to learn the latest versions — at most twice a day, or when you press Check for Updates — and downloads a release only when you install or update.</p></details>
         <details><summary data-i18n="q5.q">macOS says it can’t be opened.</summary><p data-i18n="q5.a">Builds aren’t notarized yet. Right-click Harbor and choose Open, or run <code>xattr -dr com.apple.quarantine /Applications/Harbor.app</code>.</p></details>
       </div>
     </section>
@@ -115,7 +115,7 @@
 
   <footer class="footer wrap">
     <div class="footer-row">
-      <span class="footer-brand"><img src="assets/icon.png?v=1" alt="" width="22" height="22">Harbor</span>
+      <span class="footer-brand"><img src="assets/icon.png?v=3" alt="" width="22" height="22">Harbor</span>
       <span class="footer-links">
         <a href="https://github.com/Kaandis/harbor">GitHub</a>
         <a href="https://github.com/Kaandis/harbor/blob/main/LICENSE" data-i18n="footer.license">MIT License</a>
@@ -126,6 +126,6 @@
     <p class="disclaimer" data-i18n="footer.disclaimer">Harbor is an independent project and is not affiliated with, endorsed by or sponsored by Apple Inc. Mac and macOS are trademarks of Apple Inc., registered in the U.S. and other countries.</p>
   </footer>
 
-  <script src="app.js?v=1"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
