@@ -28,7 +28,7 @@
 
 ## What it does
 
-- **A harbour, seen from above.** Every app is a boat. [Inlet](https://kaandis.github.io/inlet/), [Ferry](https://kaandis.github.io/ferry/) and whatever comes next lie moored at their berths when they’re installed, and wait at anchor outside the breakwater when they aren’t. Install one and it sails in through the harbour mouth as the download arrives; an update comes alongside on a supply boat. Past six apps a second row of berths opens along the breakwater. At night (in dark mode) the lamps come on along the quay.
+- **A harbour, seen from above.** Every app is a boat. [Inlet](https://kaandis.github.io/inlet/), [Ferry](https://kaandis.github.io/ferry/), [Stow](https://kaandis.github.io/stow/) and whatever comes next lie moored at their berths when they’re installed, and wait at anchor outside the breakwater when they aren’t. Install one and it sails in through the harbour mouth as the download arrives; an update comes alongside on a supply boat. Past six apps a second row of berths opens along the breakwater. At night (in dark mode) the lamps come on along the quay.
 - **Nothing moves unless something happens.** The harbour is drawn once and stays still; boats only sail while an install or update is under way.
 - **One-click installs and updates.** **Install** and **Update** download the app’s release from GitHub, check it against the catalog’s SHA-256, quit the app if it’s running, swap it in place and open it again. **Update All** does every app at once, and Harbor updates itself the same way.
 - **Settings in one place.** Each app ships a `settings-schema.json` describing its preferences. Harbor draws them and the app applies a change at once.

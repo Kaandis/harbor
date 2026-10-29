@@ -27,6 +27,7 @@
     'apps.title': 'Limandakiler',
     'apps.inlet': 'Çentiğin artık işe yarıyor.',
     'apps.ferry': 'Her pencere bir Tab uzağında.',
+    'apps.stow': 'Daha sakin bir menü çubuğu.',
     'apps.next': 'Sıradaki gemi',
     'apps.nextD': 'Yolda.',
     'cta.title': 'Ücretsiz. Sakin. Senin.',
@@ -104,6 +105,7 @@
   const HARBOR = [
     { name: 'Inlet', url: 'https://kaandis.github.io/inlet/', icon: 'assets/inlet-icon.png?v=1' },
     { name: 'Ferry', url: 'https://kaandis.github.io/ferry/', icon: 'assets/ferry-icon.png?v=1' },
+    { name: 'Stow', url: 'https://kaandis.github.io/stow/', icon: 'assets/stow-icon.png?v=1' },
     { name: 'Harbor', url: 'https://kaandis.github.io/harbor/', icon: 'assets/icon.png?v=3', running: true, self: true },
   ];
   const dock = $('#dock');

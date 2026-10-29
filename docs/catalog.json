@@ -48,6 +48,29 @@
       "sha256": "521e4a793cd6a04a27474b8ca9fea7a03d0db73e2ecc4886bed7c41c4d80c1bd"
     },
     {
+      "id": "stow",
+      "name": "Stow",
+      "bundleID": "app.stow.Stow",
+      "tagline": {
+        "en": "A calmer menu bar, one click away.",
+        "tr": "Daha sakin bir menü çubuğu, tek tık uzağında."
+      },
+      "summary": {
+        "en": "A menu bar manager: tuck away the icons you rarely need and bring them back with a click, a shortcut or by resting the pointer on the menu bar. Made for macOS 27, no permissions.",
+        "tr": "Bir menü çubuğu düzenleyicisi: nadiren kullandığın simgeleri kaldır, tek tıkla, bir kısayolla ya da işaretçiyi menü çubuğunda bekleterek geri getir. macOS 27 için yapıldı, izin istemez."
+      },
+      "site": "https://kaandis.github.io/stow/",
+      "repository": "https://github.com/Kaandis/stow",
+      "latestVersion": "1.0",
+      "minimumMacOS": "15.0",
+      "notes": {
+        "en": "First release.",
+        "tr": "İlk sürüm."
+      },
+      "download": "https://github.com/Kaandis/stow/releases/download/v1.0/Stow.zip",
+      "sha256": "3ddd1a6f4d8991d6cd908611fd890457dbcd7d72fa39efa2d6fc4aaf372ccc35"
+    },
+    {
       "id": "harbor",
       "name": "Harbor",
       "bundleID": "app.harbor.Harbor",
@@ -62,14 +85,14 @@
       },
       "site": "https://kaandis.github.io/harbor/",
       "repository": "https://github.com/Kaandis/harbor",
-      "latestVersion": "0.3.1",
+      "latestVersion": "0.3.2",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Uninstalling an app now also removes its login item.",
-        "tr": "Bir uygulamayı kaldırmak artık giriş öğesini de siler."
+        "en": "Stow joins the harbour.",
+        "tr": "Stow limana katıldı."
       },
-      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.1/Harbor.zip",
-      "sha256": "22acf45d767557b922c43d46ab3067dc12b041895686141b4569d28dadfe8087"
+      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.2/Harbor.zip",
+      "sha256": "b9feee8f4bbec1e74a50d55cc2964424f0a992fb9ae93e2ee810d2893b7d0c5c"
     }
   ]
 }

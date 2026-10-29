@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2 — 2026-10-29
+
+- Stow joins the harbour: a menu bar manager that tucks away the icons you rarely need.
+
 ## 0.3.1 — 2026-10-29
 
 - Uninstalling an app now also removes its login item: Harbor asks the app to unregister itself first (apps built with HarborKit 0.2 or later).

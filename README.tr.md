@@ -22,7 +22,7 @@
 
 ## Ne yapar
 
-- **Kuşbakışı bir liman.** Her uygulama bir tekne. [Inlet](https://kaandis.github.io/inlet/), [Ferry](https://kaandis.github.io/ferry/) ve sıradakiler kuruluysa iskelelerinde bağlı durur, değilse dalgakıranın dışında demirde bekler. Birini kurduğunda indirme ilerledikçe limanın ağzından girip iskelesine yanaşır; güncelleme bir ikmal teknesiyle gelir. Altı uygulamadan sonra dalgakıran boyunca ikinci bir iskele sırası açılır. Gece (koyu modda) rıhtımda lambalar yanar.
+- **Kuşbakışı bir liman.** Her uygulama bir tekne. [Inlet](https://kaandis.github.io/inlet/), [Ferry](https://kaandis.github.io/ferry/), [Stow](https://kaandis.github.io/stow/) ve sıradakiler kuruluysa iskelelerinde bağlı durur, değilse dalgakıranın dışında demirde bekler. Birini kurduğunda indirme ilerledikçe limanın ağzından girip iskelesine yanaşır; güncelleme bir ikmal teknesiyle gelir. Altı uygulamadan sonra dalgakıran boyunca ikinci bir iskele sırası açılır. Gece (koyu modda) rıhtımda lambalar yanar.
 - **Bir şey olmadıkça hiçbir şey kıpırdamaz.** Liman bir kez çizilir ve durur; tekneler yalnızca kurulum ya da güncelleme sürerken hareket eder.
 - **Tek tıkla kurulum ve güncelleme.** **Kur** ve **Güncelle**, uygulamanın GitHub sürümünü indirir, katalogdaki SHA-256 ile doğrular, açıksa uygulamayı kapatır, yerinde değiştirir ve yeniden açar. **Tümünü Güncelle** hepsini birden yapar; Harbor kendini de aynı yolla günceller.
 - **Ayarlar tek yerde.** Her uygulama tercihlerini tarif eden bir `settings-schema.json` ile gelir. Harbor onları çizer, uygulama değişikliği anında uygular.
