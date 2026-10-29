@@ -1,10 +1,11 @@
 import AppKit
 import Foundation
+import HarborKit
 import Observation
 
-/// Removes a Harbor app and everything it left on the Mac: its settings,
-/// caches, saved windows, logs, support files and sandbox container, and
-/// the permissions macOS granted it. Files go to the Trash rather than
+/// Removes a Harbor app and everything it left on the Mac: its login item,
+/// settings, caches, saved windows, logs, support files and sandbox
+/// container, and the permissions macOS granted it. Files go to the Trash rather than
 /// vanishing, so a slip can still be undone from there.
 @MainActor
 @Observable
@@ -53,6 +54,7 @@ final class Uninstaller {
         guard phase(of: app) != .working else { return }
         phases[app.id] = .working
         do {
+            await askToPrepare(app, at: url)
             try await quit(app.bundleID)
             // Through `defaults` so the preferences cache lets go too;
             // trashing the plist alone would leave the values in memory.
@@ -71,6 +73,29 @@ final class Uninstaller {
     }
 
     func reset(_ app: CatalogApp) { phases[app.id] = nil }
+
+    /// Asks the app to remove its login item, which only the app itself can
+    /// do. A running app does it and quits; one that isn't running is opened
+    /// in the background just for that and exits straight away. Apps built
+    /// before HarborKit 0.2 don't understand the request, so they're left be.
+    private func askToPrepare(_ app: CatalogApp, at url: URL) async {
+        guard UninstallRequest.isSupported(byAppAt: url) else { return }
+        if !NSRunningApplication.runningApplications(withBundleIdentifier: app.bundleID).isEmpty {
+            DistributedNotificationCenter.default().postNotificationName(
+                UninstallRequest.notification, object: app.bundleID, userInfo: nil, deliverImmediately: true)
+            return
+        }
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.arguments = [UninstallRequest.argument]
+        configuration.activates = false
+        configuration.addsToRecentItems = false
+        configuration.createsNewApplicationInstance = true
+        guard let launched = try? await NSWorkspace.shared.openApplication(at: url, configuration: configuration) else { return }
+        for _ in 0..<25 where !launched.isTerminated {
+            try? await Task.sleep(for: .milliseconds(200))
+        }
+        if !launched.isTerminated { launched.terminate() }
+    }
 
     private func quit(_ bundleID: String) async throws {
         let running = NSRunningApplication.runningApplications(withBundleIdentifier: bundleID)

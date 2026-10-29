@@ -15,14 +15,14 @@
       },
       "site": "https://kaandis.github.io/inlet/",
       "repository": "https://github.com/Kaandis/inlet",
-      "latestVersion": "1.4",
+      "latestVersion": "1.4.1",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Works with Harbor: settings changed here apply to Inlet right away. Signed with a stable certificate, so Inlet keeps its permissions when it updates. Also much lighter on battery while music plays.",
-        "tr": "Harbor ile çalışır: burada değiştirdiğin ayarlar Inlet’e anında uygulanır. Sabit bir sertifikayla imzalandı; Inlet güncellenince izinlerini korur. Ayrıca müzik çalarken pili çok daha az kullanır."
+        "en": "When Harbor uninstalls Inlet, Inlet removes its own login item first.",
+        "tr": "Harbor Inlet’i kaldırırken Inlet önce kendi giriş öğesini siler."
       },
-      "download": "https://github.com/Kaandis/inlet/releases/download/v1.4.0/Inlet.zip",
-      "sha256": "158806fbc059468144723c3e9e36c57fd02cee6454637dca5aa4354623738674"
+      "download": "https://github.com/Kaandis/inlet/releases/download/v1.4.1/Inlet.zip",
+      "sha256": "41344769c5d75539c6fc427787f6fd7ecb01e474bce434d05b2567fdc8a2ed5c"
     },
     {
       "id": "ferry",
@@ -38,14 +38,14 @@
       },
       "site": "https://kaandis.github.io/ferry/",
       "repository": "https://github.com/Kaandis/ferry",
-      "latestVersion": "1.2.1",
+      "latestVersion": "1.2.2",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Signed with a stable certificate, so Ferry keeps its permissions when it updates. Since 1.2: works with Harbor, settings changed here apply right away.",
-        "tr": "Sabit bir sertifikayla imzalandı; Ferry güncellenince izinlerini korur. 1.2’den beri: Harbor ile çalışır, burada değiştirdiğin ayarlar anında uygulanır."
+        "en": "Full-screen windows (like a Safari video) always show, busy apps no longer drop out, and Dock previews reconnect after the Dock restarts.",
+        "tr": "Tam ekran pencereler (Safari’deki bir video gibi) her zaman görünür, meşgul uygulamalar listeden düşmez ve Dock önizlemeleri Dock yeniden başlayınca tekrar bağlanır."
       },
-      "download": "https://github.com/Kaandis/ferry/releases/download/v1.2.1/Ferry.zip",
-      "sha256": "7d8cfbef3cd092a960dc1ad831fcb2227743f776f2d631203d025020c71a9b5f"
+      "download": "https://github.com/Kaandis/ferry/releases/download/v1.2.2/Ferry.zip",
+      "sha256": "521e4a793cd6a04a27474b8ca9fea7a03d0db73e2ecc4886bed7c41c4d80c1bd"
     }
   ]
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1 — 2026-10-29
+
+- Uninstalling an app now also removes its login item: Harbor asks the app to unregister itself first (apps built with HarborKit 0.2 or later).
+
 ## 0.3 — 2026-10-29
 
 - **A harbour, seen from above.** The window is now a harbour. Installed apps lie moored at their berths, and apps you don’t have yet wait at anchor beyond the breakwater. Installing sails a boat in through the mouth as the download arrives, and an update comes alongside on a supply boat. A second row of berths opens along the breakwater past six apps. At night, lamps light the quay. Nothing moves unless something is happening.

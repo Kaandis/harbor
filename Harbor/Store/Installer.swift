@@ -87,7 +87,7 @@ final class Installer {
             if isSelf {
                 relaunchSelf(at: target)
             } else if wasRunning || existing == nil {
-                try? await NSWorkspace.shared.openApplication(at: target, configuration: NSWorkspace.OpenConfiguration())
+                _ = try? await NSWorkspace.shared.openApplication(at: target, configuration: NSWorkspace.OpenConfiguration())
             }
         } catch let error as InstallError {
             phases[app.id] = .failed(error.message)
