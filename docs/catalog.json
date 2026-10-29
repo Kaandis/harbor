@@ -61,14 +61,14 @@
       },
       "site": "https://kaandis.github.io/stow/",
       "repository": "https://github.com/Kaandis/stow",
-      "latestVersion": "1.0.1",
+      "latestVersion": "1.0.2",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "No more crash when changing settings, and on macOS 27 icons always fade away in place.",
-        "tr": "Ayar değiştirirken artık çökmüyor; macOS 27’de simgeler her zaman yerinde soluklaşarak kayboluyor."
+        "en": "Quick clicks no longer send icons flying in from the left, Always Hidden works, and with optional Accessibility icons fade in place on macOS 27.",
+        "tr": "Hızlı tıklamalar simgeleri artık soldan uçurmuyor, Hep Gizli çalışıyor ve isteğe bağlı Erişilebilirlik izniyle macOS 27’de simgeler yerinde soluklaşıyor."
       },
-      "download": "https://github.com/Kaandis/stow/releases/download/v1.0.1/Stow.zip",
-      "sha256": "e8e3dabb113b3aee96a2a4a9248cb84ab97753afa377f6ae2a4fd29599a09a39"
+      "download": "https://github.com/Kaandis/stow/releases/download/v1.0.2/Stow.zip",
+      "sha256": "10e9bc2511975caf5a1ca35082378653ad718a4e99428069674d78a11c763096"
     },
     {
       "id": "harbor",
