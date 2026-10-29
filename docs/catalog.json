@@ -61,14 +61,14 @@
       },
       "site": "https://kaandis.github.io/stow/",
       "repository": "https://github.com/Kaandis/stow",
-      "latestVersion": "1.0",
+      "latestVersion": "1.0.1",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "First release.",
-        "tr": "İlk sürüm."
+        "en": "No more crash when changing settings, and on macOS 27 icons always fade away in place.",
+        "tr": "Ayar değiştirirken artık çökmüyor; macOS 27’de simgeler her zaman yerinde soluklaşarak kayboluyor."
       },
-      "download": "https://github.com/Kaandis/stow/releases/download/v1.0/Stow.zip",
-      "sha256": "3ddd1a6f4d8991d6cd908611fd890457dbcd7d72fa39efa2d6fc4aaf372ccc35"
+      "download": "https://github.com/Kaandis/stow/releases/download/v1.0.1/Stow.zip",
+      "sha256": "e8e3dabb113b3aee96a2a4a9248cb84ab97753afa377f6ae2a4fd29599a09a39"
     },
     {
       "id": "harbor",
