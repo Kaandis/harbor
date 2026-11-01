@@ -61,14 +61,14 @@
       },
       "site": "https://kaandis.github.io/stow/",
       "repository": "https://github.com/Kaandis/stow",
-      "latestVersion": "1.0.3",
+      "latestVersion": "1.0.4",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Icons fade out in place when hidden on macOS 27, Stow notices Accessibility right away and shows it in Harbor, and the dividers are visible again.",
-        "tr": "macOS 27’de gizlenen simgeler yerinde soluklaşıyor, Stow Erişilebilirlik iznini hemen fark edip Harbor’da gösteriyor ve ayraçlar yeniden görünüyor."
+        "en": "Hiding no longer sweeps Stow’s own arrow off the menu bar on macOS 27: Stow checks where its spacers land and finds the right spot beside the divider.",
+        "tr": "macOS 27’de gizlerken Stow’un kendi oku artık menü çubuğundan atılmıyor: Stow boşluklarının nereye oturduğunu kontrol edip ayracın yanındaki doğru yeri buluyor."
       },
-      "download": "https://github.com/Kaandis/stow/releases/download/v1.0.3/Stow.zip",
-      "sha256": "38ba762b670beb77b88ed761c7b59abf6f63bc9750642a543d0300fbac14a4c8"
+      "download": "https://github.com/Kaandis/stow/releases/download/v1.0.4/Stow.zip",
+      "sha256": "b9215e4982fd388fdd1e687ced534fddc2ef6eb5f984e4bb7f6bc4eb2a302146"
     },
     {
       "id": "harbor",
