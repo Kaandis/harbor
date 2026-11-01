@@ -84,14 +84,14 @@
       },
       "site": "https://kaandis.github.io/helm/",
       "repository": "https://github.com/Kaandis/helm",
-      "latestVersion": "1.0",
+      "latestVersion": "1.0.1",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "First release.",
-        "tr": "İlk sürüm."
+        "en": "Pick the big helm's tools from Harbor too: each tool is its own switch once “Show every tool that fits” is off.",
+        "tr": "Büyük dümenin araçlarını Harbor'dan da seç: “Uyan tüm araçları göster” kapalıyken her araç ayrı bir anahtar."
       },
-      "download": "https://github.com/Kaandis/helm/releases/download/v1.0/Helm.zip",
-      "sha256": "ab2a48196c7135c57078d97cf740419173a4b1a340565cb7deb3abd470894874"
+      "download": "https://github.com/Kaandis/helm/releases/download/v1.0.1/Helm.zip",
+      "sha256": "274858fb6a157bbe39e6440eeea98b022cecceb4603ef1ca8056fcc4de1e6bdb"
     },
     {
       "id": "harbor",
