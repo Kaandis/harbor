@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.4 — 2026-11-01
+
+- Scroll an app’s page and the harbour slides away with it, so its settings get the whole window; a slim bar keeps the way back.
+- Swipe right with two fingers, or with a Magic Mouse, to go back to the harbour, as in Safari. The page follows your fingers.
+- Apps can offer their own window for richer settings: Helm’s page has Arrange the Big Helm….
+
 ## 0.3.3 — 2026-11-01
 
 - Helm joins the harbour: a wheel of file tools that opens under the pointer while you drag.

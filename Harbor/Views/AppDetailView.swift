@@ -6,22 +6,27 @@ struct AppDetailView: View {
     var store: HarborStore
     let app: CatalogApp
     let icons: Namespace.ID
+    var inset: CGFloat = 0
+    var onScroll: (CGFloat) -> Void = { _ in }
     let back: () -> Void
 
     @State private var settings: AppSettings?
     private let language = AppLanguage.resolvedLocale.identifier
 
-    init(store: HarborStore, app: CatalogApp, icons: Namespace.ID, back: @escaping () -> Void) {
+    init(store: HarborStore, app: CatalogApp, icons: Namespace.ID, inset: CGFloat = 0,
+         onScroll: @escaping (CGFloat) -> Void = { _ in }, back: @escaping () -> Void) {
         self.store = store
         self.app = app
         self.icons = icons
+        self.inset = inset
+        self.onScroll = onScroll
         self.back = back
         // Read the settings now so the page never draws a blank card first.
         _settings = State(initialValue: store.installed[app.id]?.schema.map(AppSettings.init(schema:)))
     }
 
     var body: some View {
-        LiveScroll {
+        LiveScroll(inset: inset, onScroll: onScroll) {
             VStack(alignment: .leading, spacing: 22) {
                 Button(action: back) {
                     Label("All Apps", systemImage: "chevron.left")
@@ -116,6 +121,18 @@ struct AppDetailView: View {
                 .padding(.bottom, 6)
             }
             SchemaForm(settings: settings, language: language)
+            if let url = store.installed[app.id]?.url, let own = OwnSettings.load(fromApp: url) {
+                // Some settings are too rich to draw from a schema; the app
+                // opens its own window for those.
+                Divider().overlay(Theme.hairline).padding(.top, 4)
+                Button {
+                    own.open(app: url, bundleID: app.bundleID)
+                } label: {
+                    Label(own.title.localized(language), systemImage: "arrow.up.forward.app")
+                }
+                .buttonStyle(HarborButtonStyle(prominent: false))
+                .padding(.top, 12)
+            }
         } else if store.installed[app.id] == nil {
             Text("Install \(app.name) to change its settings here.")
                 .font(.system(size: 13.5))
@@ -288,5 +305,38 @@ private struct ChipLabelStyle: LabelStyle {
         }
         .padding(.horizontal, 10)
         .frame(height: 22)
+    }
+}
+
+/// An app's own settings window, for what a schema can't draw: declared as
+/// `app.ownSettings` in its settings-schema.json, with a button title and the
+/// section to open.
+struct OwnSettings: Decodable {
+    let title: SettingsSchema.Text
+    let section: String
+
+    private struct File: Decodable {
+        struct App: Decodable { let ownSettings: OwnSettings? }
+        let app: App
+    }
+
+    static func load(fromApp url: URL) -> OwnSettings? {
+        let file = url.appendingPathComponent("Contents/Resources/settings-schema.json")
+        guard let data = try? Data(contentsOf: file) else { return nil }
+        return (try? JSONDecoder().decode(File.self, from: data))?.app.ownSettings
+    }
+
+    /// Asks the app to open its window at `section`; launches it first if
+    /// it isn't running.
+    func open(app url: URL, bundleID: String) {
+        if NSRunningApplication.runningApplications(withBundleIdentifier: bundleID).isEmpty {
+            let configuration = NSWorkspace.OpenConfiguration()
+            configuration.arguments = ["--open-settings", section]
+            NSWorkspace.shared.openApplication(at: url, configuration: configuration)
+        } else {
+            DistributedNotificationCenter.default().postNotificationName(
+                Notification.Name("app.harbor.openOwnSettings"), object: bundleID,
+                userInfo: ["section": section], deliverImmediately: true)
+        }
     }
 }
