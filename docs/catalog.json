@@ -84,14 +84,14 @@
       },
       "site": "https://kaandis.github.io/helm/",
       "repository": "https://github.com/Kaandis/helm",
-      "latestVersion": "1.0.1",
+      "latestVersion": "1.0.2",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Pick the big helm's tools from Harbor too: each tool is its own switch once “Show every tool that fits” is off.",
-        "tr": "Büyük dümenin araçlarını Harbor'dan da seç: “Uyan tüm araçları göster” kapalıyken her araç ayrı bir anahtar."
+        "en": "Arrange the big helm by hand: drag tool tiles onto a live helm, round it to reorder, or off it to remove. Open it from Harbor with Arrange the Big Helm….",
+        "tr": "Büyük dümeni elle düzenle: araç karelerini canlı dümene sürükle, sırasını değiştirmek için dümende gezdir ya da çıkarmak için dışarı sürükle. Harbor'dan Büyük Dümeni Düzenle… ile aç."
       },
-      "download": "https://github.com/Kaandis/helm/releases/download/v1.0.1/Helm.zip",
-      "sha256": "274858fb6a157bbe39e6440eeea98b022cecceb4603ef1ca8056fcc4de1e6bdb"
+      "download": "https://github.com/Kaandis/helm/releases/download/v1.0.2/Helm.zip",
+      "sha256": "409172c3b56be56122efcad5cbb12a16c060626e9eb3bc1a0c069248c1088ccf"
     },
     {
       "id": "harbor",
@@ -108,14 +108,14 @@
       },
       "site": "https://kaandis.github.io/harbor/",
       "repository": "https://github.com/Kaandis/harbor",
-      "latestVersion": "0.3.3",
+      "latestVersion": "0.3.4",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Helm joins the harbour.",
-        "tr": "Helm limana katıldı."
+        "en": "Scroll an app's page and the harbour slides away so its settings get the whole window; pull down past the top to go back.",
+        "tr": "Bir uygulamanın sayfasını kaydırınca liman çekilir, ayarlar tüm pencereyi kaplar; geri dönmek için en üstten aşağı çek."
       },
-      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.3/Harbor.zip",
-      "sha256": "2efcd22ff175aa370338a8f84ce9da995ebdc1941ce7123fa1893e2685ae48d1"
+      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.4/Harbor.zip",
+      "sha256": "ee0e3f1f4f281065877eb3242b2bdd78241a1d206e3f7f7ee5ccd8bcef312825"
     }
   ]
 }
