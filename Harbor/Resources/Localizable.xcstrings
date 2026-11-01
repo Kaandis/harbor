@@ -441,6 +441,26 @@
         }
       }
     },
+    "Pull for the harbour": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limana dönmek için çek"
+          }
+        }
+      }
+    },
+    "Release for the harbour": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limana dönmek için bırak"
+          }
+        }
+      }
+    },
     "Remove": {
       "localizations": {
         "tr": {

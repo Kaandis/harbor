@@ -8,17 +8,17 @@ import SwiftUI
 ///
 /// The page runs under the strip: scroll it and the harbour slides away with
 /// it, so its settings get the whole window, with a slim bar to get back.
-/// Swipe right with two fingers (or with a Magic Mouse), as in Safari, and
-/// the page follows your fingers back to the harbour.
+/// Scroll back to the top and keep pulling down, and letting go past the
+/// mark takes you back to the harbour.
 struct ContentView: View {
     @Bindable var store: HarborStore
     @Namespace private var icons
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// How far the open page has scrolled.
     @State private var scrolled: CGFloat = 0
-    /// How far a back swipe has carried the page, 0 to 1.
-    @State private var swipe: CGFloat = 0
-    @State private var swipeBack = SwipeBack()
+    @State private var pullBack = PullBack()
+    /// How far the page is pulled past its top, as the fingers say.
+    @State private var pulled: CGFloat = 0
 
     private static let deskHeight: CGFloat = 150
     static let barHeight: CGFloat = 46
@@ -39,6 +39,8 @@ struct ContentView: View {
             let lift = open ? min(max(scrolled, 0), mapHeight) : 0
             // The bar fades in over the last stretch before the harbour is gone.
             let barProgress = open ? min(max((lift - (mapHeight - Self.barHeight * 1.5)) / (Self.barHeight * 1.5), 0), 1) : 0
+            // Pulled down past the top: how close to going back, 0 to 1.
+            let pull = open ? min(pulled / PullBack.distance, 1) : 0
 
             ZStack(alignment: .top) {
                 Theme.background
@@ -46,8 +48,6 @@ struct ContentView: View {
                 if let id = store.selection {
                     page(for: id, inset: mapHeight)
                         .id(id)
-                        .offset(x: swipe * width)
-                        .opacity(1 - swipe * 0.35)
                         .transition(pageTransition(for: id, width: width, k: k))
                 } else {
                     DeskView(store: store)
@@ -68,6 +68,12 @@ struct ContentView: View {
                     }
                     .offset(y: -lift)
 
+                if pull > 0 {
+                    PullHint(progress: pull)
+                        .offset(y: mapHeight + 10)
+                        .allowsHitTesting(false)
+                }
+
                 WindowDragStrip()
 
                 if open {
@@ -82,12 +88,16 @@ struct ContentView: View {
         .ignoresSafeArea()
         .onExitCommand { select(nil) }
         .onAppear {
-            swipeBack.isEnabled = { store.selection != nil }
-            swipeBack.onChange = { amount in swipe = amount }
-            swipeBack.onBack = { select(nil) }
-            swipeBack.start()
+            pullBack.atTop = { store.selection != nil && scrolled <= 1 }
+            pullBack.onPull = { pulled = $0 }
+            pullBack.onBack = { select(nil) }
+            pullBack.start()
         }
-        .onDisappear { swipeBack.stop() }
+        .onDisappear { pullBack.stop() }
+        .onChange(of: pulled >= PullBack.distance) { _, reached in
+            // A tap on the trackpad as the mark is reached, like the system's own.
+            if reached { NSHapticFeedbackManager.defaultPerformer.perform(.alignment, performanceTime: .now) }
+        }
     }
 
     @ViewBuilder
@@ -124,8 +134,6 @@ struct ContentView: View {
             store.selection = id
             scrolled = 0
         }
-        // A finished back swipe leaves the old page where the fingers took it.
-        swipe = 0
     }
 }
 
@@ -162,23 +170,47 @@ private struct PageBar: View {
     }
 }
 
-/// Safari's back gesture: two fingers to the right on a trackpad, or the
-/// Magic Mouse's swipe, tracked as it happens so the page follows the
-/// fingers, and finished or let go by the system's own physics.
+/// Shows how far a pull past the top has come: an arrow toward the harbour
+/// that fills in, and says so once letting go will take you back.
+private struct PullHint: View {
+    let progress: CGFloat
+
+    var body: some View {
+        let ready = progress >= 1
+        HStack(spacing: 7) {
+            Image(systemName: ready ? "arrow.up.circle.fill" : "arrow.up.circle")
+                .font(.system(size: 16, weight: .medium))
+                .rotationEffect(.degrees(Double(1 - progress) * 180))
+            Text(ready ? "Release for the harbour" : "Pull for the harbour")
+                .font(.system(size: 12.5, weight: .medium))
+        }
+        .foregroundStyle(ready ? Theme.ink : Theme.ink2)
+        .opacity(Double(min(progress * 1.6, 1)))
+        .animation(.harborSelect, value: ready)
+    }
+}
+
+/// Going back by pulling past the top of a page. It reads the fingers
+/// themselves (trackpad or Magic Mouse) rather than the scroll view's bounce:
+/// once the page is at its top, every bit of pull down adds up, any push up
+/// takes it back, and letting go far enough goes back to the harbour.
 @MainActor
-final class SwipeBack {
-    var isEnabled: () -> Bool = { false }
-    var onChange: (CGFloat) -> Void = { _ in }
+final class PullBack {
+    /// How far past the top counts, in the damped points the page moves.
+    static let distance: CGFloat = 64
+    var atTop: () -> Bool = { false }
+    var onPull: (CGFloat) -> Void = { _ in }
     var onBack: () -> Void = {}
     private var monitor: Any?
+    private var pulled: CGFloat = 0
 
     func start() {
         guard monitor == nil else { return }
-        monitor = NSEvent.addLocalMonitorForEvents(matching: [.scrollWheel, .swipe]) { [weak self] event in
+        monitor = NSEvent.addLocalMonitorForEvents(matching: .scrollWheel) { [weak self] event in
             // Local monitors run on the main thread.
-            nonisolated(unsafe) let event = event
-            let consumed = MainActor.assumeIsolated { self?.consumes(event) ?? false }
-            return consumed ? nil : event
+            let phase = event.phase, delta = event.scrollingDeltaY
+            MainActor.assumeIsolated { self?.handle(phase: phase, delta: delta) }
+            return event
         }
     }
 
@@ -187,31 +219,28 @@ final class SwipeBack {
         monitor = nil
     }
 
-    /// Whether the event was a back gesture, taken here.
-    private func consumes(_ event: NSEvent) -> Bool {
-        guard isEnabled() else { return false }
-        if event.type == .swipe {
-            // Three-finger (or two-finger Magic Mouse) swipes, when set to
-            // swipe between pages: positive is back, as in WebKit.
-            if event.deltaX > 0 { onBack(); return true }
-            return false
+    private func handle(phase: NSEvent.Phase, delta: CGFloat) {
+        switch phase {
+        case .began:
+            set(0)
+        case .changed:
+            // Positive is the page moving down: a pull past the top. Halved,
+            // as the page's own bounce gives way.
+            guard atTop() || pulled > 0 else { return }
+            set(max(pulled + delta * 0.5, 0))
+        case .ended, .cancelled:
+            let back = phase == .ended && pulled >= Self.distance
+            set(0)
+            if back { onBack() }
+        default:
+            break
         }
-        guard event.phase == .began, NSEvent.isSwipeTrackingFromScrollEventsEnabled,
-              abs(event.scrollingDeltaX) > abs(event.scrollingDeltaY) * 1.5, event.scrollingDeltaX > 0 else { return false }
-        var going = false
-        event.trackSwipeEvent(options: [.lockDirection, .clampGestureAmount],
-                              dampenAmountThresholdMin: 0, max: 1) { [weak self] amount, phase, isComplete, _ in
-            MainActor.assumeIsolated {
-                guard let self else { return }
-                self.onChange(max(amount, 0))
-                if phase == .ended { going = true }
-                if phase == .cancelled { going = false }
-                if isComplete {
-                    if going { self.onBack() } else { self.onChange(0) }
-                }
-            }
-        }
-        return true
+    }
+
+    private func set(_ value: CGFloat) {
+        guard value != pulled else { return }
+        pulled = value
+        onPull(value)
     }
 }
 
