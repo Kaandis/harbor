@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3 — 2026-11-01
+
+- Helm joins the harbour: a wheel of file tools that opens under the pointer while you drag.
+
 ## 0.3.2 — 2026-10-29
 
 - Stow joins the harbour: a menu bar manager that tucks away the icons you rarely need.

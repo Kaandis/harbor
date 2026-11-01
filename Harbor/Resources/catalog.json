@@ -69,6 +69,29 @@
       },
       "download": "https://github.com/Kaandis/stow/releases/download/v1.0/Stow.zip",
       "sha256": "3ddd1a6f4d8991d6cd908611fd890457dbcd7d72fa39efa2d6fc4aaf372ccc35"
+    },
+    {
+      "id": "helm",
+      "name": "Helm",
+      "bundleID": "app.helm.Helm",
+      "tagline": {
+        "en": "Drag, hold a key, drop.",
+        "tr": "Sürükle, tuşa bas, bırak."
+      },
+      "summary": {
+        "en": "A wheel of file tools that opens under the pointer while you drag: convert photos, PDFs, videos and audio, compress, remove backgrounds, copy text, zip, AirDrop and Cut. Shake a drag to see every tool. No permissions.",
+        "tr": "Sürüklerken işaretçinin altında açılan bir dosya araçları çarkı: fotoğraf, PDF, video ve sesleri dönüştür, sıkıştır, arka planı sil, metni kopyala, zip'le, AirDrop'la ve Kes. Tüm araçlar için sürüklerken salla. İzin istemez."
+      },
+      "site": "https://kaandis.github.io/helm/",
+      "repository": "https://github.com/Kaandis/helm",
+      "latestVersion": "1.0",
+      "minimumMacOS": "15.0",
+      "notes": {
+        "en": "First release.",
+        "tr": "İlk sürüm."
+      },
+      "download": "https://github.com/Kaandis/helm/releases/download/v1.0/Helm.zip",
+      "sha256": "ab2a48196c7135c57078d97cf740419173a4b1a340565cb7deb3abd470894874"
     }
   ]
 }

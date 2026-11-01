@@ -71,6 +71,29 @@
       "sha256": "b9215e4982fd388fdd1e687ced534fddc2ef6eb5f984e4bb7f6bc4eb2a302146"
     },
     {
+      "id": "helm",
+      "name": "Helm",
+      "bundleID": "app.helm.Helm",
+      "tagline": {
+        "en": "Drag, hold a key, drop.",
+        "tr": "Sürükle, tuşa bas, bırak."
+      },
+      "summary": {
+        "en": "A wheel of file tools that opens under the pointer while you drag: convert photos, PDFs, videos and audio, compress, remove backgrounds, copy text, zip, AirDrop and Cut. Shake a drag to see every tool. No permissions.",
+        "tr": "Sürüklerken işaretçinin altında açılan bir dosya araçları çarkı: fotoğraf, PDF, video ve sesleri dönüştür, sıkıştır, arka planı sil, metni kopyala, zip'le, AirDrop'la ve Kes. Tüm araçlar için sürüklerken salla. İzin istemez."
+      },
+      "site": "https://kaandis.github.io/helm/",
+      "repository": "https://github.com/Kaandis/helm",
+      "latestVersion": "1.0",
+      "minimumMacOS": "15.0",
+      "notes": {
+        "en": "First release.",
+        "tr": "İlk sürüm."
+      },
+      "download": "https://github.com/Kaandis/helm/releases/download/v1.0/Helm.zip",
+      "sha256": "ab2a48196c7135c57078d97cf740419173a4b1a340565cb7deb3abd470894874"
+    },
+    {
       "id": "harbor",
       "name": "Harbor",
       "bundleID": "app.harbor.Harbor",
@@ -85,14 +108,14 @@
       },
       "site": "https://kaandis.github.io/harbor/",
       "repository": "https://github.com/Kaandis/harbor",
-      "latestVersion": "0.3.2",
+      "latestVersion": "0.3.3",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Stow joins the harbour.",
-        "tr": "Stow limana katıldı."
+        "en": "Helm joins the harbour.",
+        "tr": "Helm limana katıldı."
       },
-      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.2/Harbor.zip",
-      "sha256": "b9feee8f4bbec1e74a50d55cc2964424f0a992fb9ae93e2ee810d2893b7d0c5c"
+      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.3/Harbor.zip",
+      "sha256": "2efcd22ff175aa370338a8f84ce9da995ebdc1941ce7123fa1893e2685ae48d1"
     }
   ]
 }
