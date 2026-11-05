@@ -84,14 +84,14 @@
       },
       "site": "https://kaandis.github.io/helm/",
       "repository": "https://github.com/Kaandis/helm",
-      "latestVersion": "1.0.2",
+      "latestVersion": "1.0.3",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Arrange the big helm by hand: drag tool tiles onto a live helm, round it to reorder, or off it to remove. Open it from Harbor with Arrange the Big Helm….",
-        "tr": "Büyük dümeni elle düzenle: araç karelerini canlı dümene sürükle, sırasını değiştirmek için dümende gezdir ya da çıkarmak için dışarı sürükle. Harbor'dan Büyük Dümeni Düzenle… ile aç."
+        "en": "Copy, Move to…, Copy to… and Duplicate, and a lighter helm: the big helm starts with the everyday tools and shows their names. Settings › Big Helm can start over with them any time.",
+        "tr": "Kopyala, Taşı…, Şuraya kopyala… ve Çoğalt, ve daha sade bir dümen: büyük dümen günlük araçlarla başlıyor ve adlarını gösteriyor. Ayarlar › Büyük Dümen'den istediğin an onlarla baştan başlayabilirsin."
       },
-      "download": "https://github.com/Kaandis/helm/releases/download/v1.0.2/Helm.zip",
-      "sha256": "409172c3b56be56122efcad5cbb12a16c060626e9eb3bc1a0c069248c1088ccf"
+      "download": "https://github.com/Kaandis/helm/releases/download/v1.0.3/Helm.zip",
+      "sha256": "abb56ec14a69865c880b0ded3cac3ba6d0b0ac98beaca84756e638c75833894b"
     },
     {
       "id": "harbor",
