@@ -451,6 +451,16 @@
         }
       }
     },
+    "Quit": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapat"
+          }
+        }
+      }
+    },
     "Release for the harbour": {
       "localizations": {
         "tr": {

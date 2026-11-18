@@ -1,7 +1,7 @@
 import HarborKit
 import SwiftUI
 
-/// Open, Install or Update — and while it works, the button itself fills up
+/// Open, Quit, Install or Update — and while it works, the button itself fills up
 /// with the download and then says what it's doing.
 struct InstallButton: View {
     var store: HarborStore
@@ -26,7 +26,7 @@ struct InstallButton: View {
                     .frame(height: compact ? 26 : 30)
             case .idle, .failed:
                 Button { store.primaryAction(for: app) } label: { Text(title) }
-                    .buttonStyle(HarborButtonStyle())
+                    .buttonStyle(HarborButtonStyle(prominent: !quits))
                     .controlSize(compact ? .small : .regular)
                 if case .failed(let message) = phase {
                     Text(message)
@@ -47,8 +47,13 @@ struct InstallButton: View {
         switch store.status(of: app) {
         case .notInstalled: return app.canInstall ? "Install" : "Get on the Website ↗"
         case .updateAvailable(_, let latest): return app.canInstall ? "Update to \(latest)" : "Update to \(latest) ↗"
-        case .current: return "Open"
+        case .current: return quits ? "Quit" : "Open"
         }
+    }
+
+    /// A current app that's running offers Quit instead of Open.
+    private var quits: Bool {
+        !app.isHub && !store.status(of: app).isUpdate && store.installed[app.id] != nil && store.isRunning(app)
     }
 }
 

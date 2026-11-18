@@ -15,14 +15,14 @@
       },
       "site": "https://kaandis.github.io/inlet/",
       "repository": "https://github.com/Kaandis/inlet",
-      "latestVersion": "1.4.1",
+      "latestVersion": "1.4.2",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "When Harbor uninstalls Inlet, Inlet removes its own login item first.",
-        "tr": "Harbor Inlet’i kaldırırken Inlet önce kendi giriş öğesini siler."
+        "en": "Inlet no longer disappears on its own: macOS 27 sometimes quit it as an idle background app.",
+        "tr": "Inlet artık kendiliğinden kapanmıyor: macOS 27 onu bazen boşta sanıp kapatıyordu."
       },
-      "download": "https://github.com/Kaandis/inlet/releases/download/v1.4.1/Inlet.zip",
-      "sha256": "41344769c5d75539c6fc427787f6fd7ecb01e474bce434d05b2567fdc8a2ed5c"
+      "download": "https://github.com/Kaandis/inlet/releases/download/v1.4.2/Inlet.zip",
+      "sha256": "4f5b395fa12b06f442fd6bc36a0715e6bf1379517224decde2373ff4f969363b"
     },
     {
       "id": "ferry",
@@ -38,14 +38,14 @@
       },
       "site": "https://kaandis.github.io/ferry/",
       "repository": "https://github.com/Kaandis/ferry",
-      "latestVersion": "1.2.2",
+      "latestVersion": "1.2.3",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Full-screen windows (like a Safari video) always show, busy apps no longer drop out, and Dock previews reconnect after the Dock restarts.",
-        "tr": "Tam ekran pencereler (Safari’deki bir video gibi) her zaman görünür, meşgul uygulamalar listeden düşmez ve Dock önizlemeleri Dock yeniden başlayınca tekrar bağlanır."
+        "en": "Ferry no longer disappears on its own: macOS 27 sometimes quit it as an idle background app.",
+        "tr": "Ferry artık kendiliğinden kapanmıyor: macOS 27 onu bazen boşta sanıp kapatıyordu."
       },
-      "download": "https://github.com/Kaandis/ferry/releases/download/v1.2.2/Ferry.zip",
-      "sha256": "521e4a793cd6a04a27474b8ca9fea7a03d0db73e2ecc4886bed7c41c4d80c1bd"
+      "download": "https://github.com/Kaandis/ferry/releases/download/v1.2.3/Ferry.zip",
+      "sha256": "bbce85e6dd3433961481c6390b17a7e71915f83ad636bf12ecd2bfd44344702c"
     },
     {
       "id": "stow",
@@ -61,14 +61,14 @@
       },
       "site": "https://kaandis.github.io/stow/",
       "repository": "https://github.com/Kaandis/stow",
-      "latestVersion": "1.0.5",
+      "latestVersion": "1.0.6",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Steadier hiding on macOS 27: Stow’s divider and arrow clear the bar themselves, so icons fade out in place and nothing gets misplaced. No permissions needed.",
-        "tr": "macOS 27’de daha kararlı gizleme: çubuğu Stow’un ayracı ve oku boşaltıyor; simgeler yerinde soluklaşıyor, hiçbir şey yanlış yere düşmüyor. İzin gerekmiyor."
+        "en": "Stow no longer disappears on its own: macOS 27 sometimes quit it as an idle background app.",
+        "tr": "Stow artık kendiliğinden kapanmıyor: macOS 27 onu bazen boşta sanıp kapatıyordu."
       },
-      "download": "https://github.com/Kaandis/stow/releases/download/v1.0.5/Stow.zip",
-      "sha256": "661a37eb0a2dc8b51bf4eafa3baf97d1036eea21af9fa56f7c5f005b4de104cb"
+      "download": "https://github.com/Kaandis/stow/releases/download/v1.0.6/Stow.zip",
+      "sha256": "f061dc05a9fa1914e1ddce219c9e5568508455e622140d3b43ce42d281fd46b1"
     },
     {
       "id": "helm",
@@ -84,14 +84,14 @@
       },
       "site": "https://kaandis.github.io/helm/",
       "repository": "https://github.com/Kaandis/helm",
-      "latestVersion": "1.0.3",
+      "latestVersion": "1.0.4",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Copy, Move to…, Copy to… and Duplicate, and a lighter helm: the big helm starts with the everyday tools and shows their names. Settings › Big Helm can start over with them any time.",
-        "tr": "Kopyala, Taşı…, Şuraya kopyala… ve Çoğalt, ve daha sade bir dümen: büyük dümen günlük araçlarla başlıyor ve adlarını gösteriyor. Ayarlar › Büyük Dümen'den istediğin an onlarla baştan başlayabilirsin."
+        "en": "Helm no longer disappears on its own: macOS 27 sometimes quit it as an idle background app.",
+        "tr": "Helm artık kendiliğinden kapanmıyor: macOS 27 onu bazen boşta sanıp kapatıyordu."
       },
-      "download": "https://github.com/Kaandis/helm/releases/download/v1.0.3/Helm.zip",
-      "sha256": "abb56ec14a69865c880b0ded3cac3ba6d0b0ac98beaca84756e638c75833894b"
+      "download": "https://github.com/Kaandis/helm/releases/download/v1.0.4/Helm.zip",
+      "sha256": "6f1ebba1966be0093efebd96a6086ad323a121f46a460faa12a2c9d90eb2a22b"
     },
     {
       "id": "harbor",
@@ -108,14 +108,14 @@
       },
       "site": "https://kaandis.github.io/harbor/",
       "repository": "https://github.com/Kaandis/harbor",
-      "latestVersion": "0.3.4",
+      "latestVersion": "0.3.5",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Scroll an app's page and the harbour slides away so its settings get the whole window; pull down past the top to go back.",
-        "tr": "Bir uygulamanın sayfasını kaydırınca liman çekilir, ayarlar tüm pencereyi kaplar; geri dönmek için en üstten aşağı çek."
+        "en": "Open and quit every app from Harbor: a running app shows Quit instead of Open.",
+        "tr": "Her uygulamayı Harbor’dan aç ve kapat: çalışan bir uygulamada Aç yerine Kapat görünür."
       },
-      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.4/Harbor.zip",
-      "sha256": "ee0e3f1f4f281065877eb3242b2bdd78241a1d206e3f7f7ee5ccd8bcef312825"
+      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.5/Harbor.zip",
+      "sha256": "d28320b2a2058e01eb24bf6c80d7549ba647aa01b6eabc40694c54e025933cc9"
     }
   ]
 }

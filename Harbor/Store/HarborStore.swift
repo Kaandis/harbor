@@ -10,6 +10,8 @@ final class HarborStore {
     let installer = Installer()
     let uninstaller = Uninstaller()
     private(set) var installed: [String: Installed] = [:]
+    /// Bundle IDs of the shelf's apps that are running now.
+    private(set) var running: Set<String> = []
     private(set) var isChecking = false
     private(set) var lastChecked: Date?
     /// nil shows the whole harbour; an app's id or `officeID` opens its page.
@@ -85,6 +87,9 @@ final class HarborStore {
         if found.mapValues(\.version) != installed.mapValues(\.version) || Set(found.keys) != Set(installed.keys) {
             installed = found
         }
+        let ids = Set(shelf.map(\.bundleID))
+        let now = Set(NSWorkspace.shared.runningApplications.compactMap(\.bundleIdentifier)).intersection(ids)
+        if now != running { running = now }
     }
 
     /// The copy of an app that Harbor shows and updates. Launch Services may
@@ -130,9 +135,11 @@ final class HarborStore {
             guard app.canInstall else { NSWorkspace.shared.open(app.site); return }
             Task { await install(app) }
         case .current:
-            open(app)
+            isRunning(app) ? quit(app) : open(app)
         }
     }
+
+    func isRunning(_ app: CatalogApp) -> Bool { running.contains(app.bundleID) }
 
     func install(_ app: CatalogApp) async {
         await installer.install(app, replacing: app.isHub ? Bundle.main.bundleURL : installed[app.id]?.url)
@@ -157,6 +164,10 @@ final class HarborStore {
     func open(_ app: CatalogApp) {
         guard let url = installed[app.id]?.url else { return }
         NSWorkspace.shared.openApplication(at: url, configuration: NSWorkspace.OpenConfiguration())
+    }
+
+    func quit(_ app: CatalogApp) {
+        NSRunningApplication.runningApplications(withBundleIdentifier: app.bundleID).forEach { $0.terminate() }
     }
 
     /// Quits the app if it's running and opens it again, for settings that apply at launch.

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.5 — 2026-11-18
+
+- An app that's running shows Quit instead of Open on its page and in the harbour, so you can open and quit every app from Harbor.
+
 ## 0.3.4 — 2026-11-01
 
 - Scroll an app’s page and the harbour slides away with it, so its settings get the whole window; a slim bar keeps the way back.
