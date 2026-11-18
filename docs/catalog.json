@@ -61,14 +61,14 @@
       },
       "site": "https://kaandis.github.io/stow/",
       "repository": "https://github.com/Kaandis/stow",
-      "latestVersion": "1.0.4",
+      "latestVersion": "1.0.5",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Hiding no longer sweeps Stow’s own arrow off the menu bar on macOS 27: Stow checks where its spacers land and finds the right spot beside the divider.",
-        "tr": "macOS 27’de gizlerken Stow’un kendi oku artık menü çubuğundan atılmıyor: Stow boşluklarının nereye oturduğunu kontrol edip ayracın yanındaki doğru yeri buluyor."
+        "en": "Steadier hiding on macOS 27: Stow’s divider and arrow clear the bar themselves, so icons fade out in place and nothing gets misplaced. No permissions needed.",
+        "tr": "macOS 27’de daha kararlı gizleme: çubuğu Stow’un ayracı ve oku boşaltıyor; simgeler yerinde soluklaşıyor, hiçbir şey yanlış yere düşmüyor. İzin gerekmiyor."
       },
-      "download": "https://github.com/Kaandis/stow/releases/download/v1.0.4/Stow.zip",
-      "sha256": "b9215e4982fd388fdd1e687ced534fddc2ef6eb5f984e4bb7f6bc4eb2a302146"
+      "download": "https://github.com/Kaandis/stow/releases/download/v1.0.5/Stow.zip",
+      "sha256": "661a37eb0a2dc8b51bf4eafa3baf97d1036eea21af9fa56f7c5f005b4de104cb"
     },
     {
       "id": "helm",
