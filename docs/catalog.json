@@ -15,14 +15,14 @@
       },
       "site": "https://kaandis.github.io/inlet/",
       "repository": "https://github.com/Kaandis/inlet",
-      "latestVersion": "1.4.2",
+      "latestVersion": "1.4.3",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Inlet no longer disappears on its own: macOS 27 sometimes quit it as an idle background app.",
-        "tr": "Inlet artık kendiliğinden kapanmıyor: macOS 27 onu bazen boşta sanıp kapatıyordu."
+        "en": "On an external monitor the island no longer sits there as a black notch: it fades away at rest and shows up only when something's happening.",
+        "tr": "Harici monitörde ada artık siyah bir çentik gibi durmuyor: boştayken kayboluyor, yalnızca bir şey olduğunda görünüyor."
       },
-      "download": "https://github.com/Kaandis/inlet/releases/download/v1.4.2/Inlet.zip",
-      "sha256": "4f5b395fa12b06f442fd6bc36a0715e6bf1379517224decde2373ff4f969363b"
+      "download": "https://github.com/Kaandis/inlet/releases/download/v1.4.3/Inlet.zip",
+      "sha256": "1397ba19da44ace342a088c6439e38960212ab6458354962a2fd3c465b3c9fb7"
     },
     {
       "id": "ferry",
