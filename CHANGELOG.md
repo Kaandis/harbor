@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.5 — 2026-11-20
+## 0.3.6 — 2026-11-20
 
 - Harbor no longer lingers in the Dock as “Running in Background”. When macOS brings it back hidden (as it can at login), it has nothing to do in the background, so it quits; open it again and it starts fresh.
 
