@@ -108,14 +108,14 @@
       },
       "site": "https://kaandis.github.io/harbor/",
       "repository": "https://github.com/Kaandis/harbor",
-      "latestVersion": "0.3.5",
+      "latestVersion": "0.3.6",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Open and quit every app from Harbor: a running app shows Quit instead of Open.",
-        "tr": "Her uygulamayı Harbor’dan aç ve kapat: çalışan bir uygulamada Aç yerine Kapat görünür."
+        "en": "Harbor no longer lingers in the Dock as “Running in Background”: brought back hidden by macOS, it quits instead.",
+        "tr": "Harbor artık Dock'ta “Running in Background” olarak kalmıyor: macOS onu gizli geri getirirse kendini kapatıyor."
       },
-      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.5/Harbor.zip",
-      "sha256": "d28320b2a2058e01eb24bf6c80d7549ba647aa01b6eabc40694c54e025933cc9"
+      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.6/Harbor.zip",
+      "sha256": "8ce5755b745c09dcb90f912511cb370a55ecca3fc679dfc461e25439f61b0854"
     }
   ]
 }
