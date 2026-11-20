@@ -108,14 +108,14 @@
       },
       "site": "https://kaandis.github.io/harbor/",
       "repository": "https://github.com/Kaandis/harbor",
-      "latestVersion": "0.3.6",
+      "latestVersion": "0.3.7",
       "minimumMacOS": "15.0",
       "notes": {
-        "en": "Harbor no longer lingers in the Dock as “Running in Background”: brought back hidden by macOS, it quits instead.",
-        "tr": "Harbor artık Dock'ta “Running in Background” olarak kalmıyor: macOS onu gizli geri getirirse kendini kapatıyor."
+        "en": "Harbor never lingers in the Dock as “Running in Background”: with no window left, it quits after a few seconds. A minimized window or ⌘H keeps it open.",
+        "tr": "Harbor artık Dock'ta “Running in Background” olarak kalmıyor: açık penceresi kalmazsa birkaç saniyede kendini kapatıyor. Küçültülmüş pencere ya da ⌘H açık tutar."
       },
-      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.6/Harbor.zip",
-      "sha256": "8ce5755b745c09dcb90f912511cb370a55ecca3fc679dfc461e25439f61b0854"
+      "download": "https://github.com/Kaandis/harbor/releases/download/v0.3.7/Harbor.zip",
+      "sha256": "c5e7e283b4a1406572f3c3b52f3f554481487954fb67fd7cbc82f2f092f8c633"
     }
   ]
 }
