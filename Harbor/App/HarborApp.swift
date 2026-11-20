@@ -42,6 +42,37 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         DispatchQueue.main.async {
             if NSApp.isHidden { NSApp.terminate(nil) }
         }
+        watchForNoWindow()
+        #if DEBUG
+        // `--order-out` puts every window away, to check the watch below.
+        if CommandLine.arguments.contains("--order-out") {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { NSApp.windows.forEach { $0.orderOut(nil) } }
+        }
+        #endif
+    }
+
+    private var windowless = 0
+
+    /// Whatever way Harbor ends up running with no window (the Dock then
+    /// calls it "running in the background"), it leaves after a few seconds,
+    /// since it has nothing to do there. Hidden on purpose with ⌘H, it stays.
+    private func watchForNoWindow() {
+        let timer = Timer(timeInterval: 2, repeats: true) { [weak self] _ in
+            MainActor.assumeIsolated {
+                guard let self else { return }
+                let showing = NSApp.windows.contains { window in
+                    !(window is NSPanel) && (window.isVisible || window.isMiniaturized)
+                }
+                if showing || NSApp.isHidden {
+                    self.windowless = 0
+                } else {
+                    self.windowless += 1
+                    if self.windowless >= 2 { NSApp.terminate(nil) }
+                }
+            }
+        }
+        timer.tolerance = 1
+        RunLoop.main.add(timer, forMode: .common)
     }
 
     /// Harbor is only a window; closing it is quitting it.

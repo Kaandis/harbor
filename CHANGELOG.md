@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.7 — 2026-11-20
+
+- Harbor really leaves now: whatever way it ends up running with no window, it quits after a few seconds instead of sitting in the Dock as “Running in Background”. A minimized window, or Harbor hidden with ⌘H, keeps it open.
+
 ## 0.3.6 — 2026-11-20
 
 - Harbor no longer lingers in the Dock as “Running in Background”. When macOS brings it back hidden (as it can at login), it has nothing to do in the background, so it quits; open it again and it starts fresh.
