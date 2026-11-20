@@ -35,6 +35,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         #if DEBUG
         PreviewRenderer.runIfRequested()
         #endif
+        // Opened hidden (macOS bringing apps back at login does this), the
+        // window never shows and Harbor would sit in the Dock "running in
+        // the background" with nothing to do there. It has no background
+        // work, so it leaves instead; opening it again starts it fresh.
+        DispatchQueue.main.async {
+            if NSApp.isHidden { NSApp.terminate(nil) }
+        }
     }
 
     /// Harbor is only a window; closing it is quitting it.
